@@ -178,4 +178,4 @@ overlay.addEventListener("click", (e) => {
       }
 }, false);
 
-window.onload = loadDatabase;
+// window.onload = loadDatabase;
