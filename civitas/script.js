@@ -15,6 +15,8 @@ const editProdigy = document.querySelector("#edit-prodigy");
 const editStatus = document.querySelector("#edit-status");
 const editButton = document.querySelector("#edit-button");
 
+const loadButton = document.querySelector("#load-button");
+
 var user;
 
 function register() {
@@ -113,17 +115,17 @@ function loadDatabase() {
             prepareTable(queryResult);
         })
         .catch(function(error) {
-            queryResult = [{
-                clanName: "LEE",
-                faceClaim: "Cha Jun Ho",
-                id: "Ia9YruVrWHR28rdezhkJ",
-                index: 0,
-                name: "Jinnan",
-                prodigy: "Ostenium",
-                statusOfFaceClaim: "NPA Student"
-            }];
-            // prepare data table
-            prepareTable(queryResult);
+            // queryResult = [{
+            //     clanName: "LEE",
+            //     faceClaim: "Cha Jun Ho",
+            //     id: "Ia9YruVrWHR28rdezhkJ",
+            //     index: 0,
+            //     name: "Jinnan",
+            //     prodigy: "Ostenium",
+            //     statusOfFaceClaim: "NPA Student"
+            // }];
+            // // prepare data table
+            // prepareTable(queryResult);
         });
 }
 
@@ -178,4 +180,4 @@ overlay.addEventListener("click", (e) => {
       }
 }, false);
 
-// window.onload = loadDatabase;
+loadButton.addEventListener("click", loadDatabase);
