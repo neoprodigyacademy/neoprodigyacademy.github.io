@@ -213,3 +213,7 @@ body {
 .mdl-button {
   cursor: pointer;
 }
+
+.margin-r8 {
+  margin-right: 8px;
+}

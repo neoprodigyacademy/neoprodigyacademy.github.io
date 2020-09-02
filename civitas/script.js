@@ -66,7 +66,7 @@ function prepareTable(dataset) {
             targets: 0,
             render: function (data, type, row, meta) {
                 if (type === 'display') {
-                    data = '<span class="material-icons mdl-button" onClick="showEditCivitas(' + data + ')">edit</span>' +
+                    data = '<span class="material-icons mdl-button margin-r8" onClick="showEditCivitas(' + data + ')">edit</span>' +
                         '<span class="material-icons mdl-button" onClick="deleteCivitas(' + data + ')">delete_forever</span>';
                     // data = '<a href="' + data + '">' + data + '</a>';
                 }
@@ -115,17 +115,7 @@ function loadDatabase() {
             prepareTable(queryResult);
         })
         .catch(function (error) {
-            // queryResult = [{
-            //     clanName: "LEE",
-            //     faceClaim: "Cha Jun Ho",
-            //     id: "Ia9YruVrWHR28rdezhkJ",
-            //     index: 0,
-            //     name: "Jinnan",
-            //     prodigy: "Ostenium",
-            //     statusOfFaceClaim: "NPA Student"
-            // }];
-            // // prepare data table
-            // prepareTable(queryResult);
+
         });
 }
 
