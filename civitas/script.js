@@ -7,7 +7,9 @@ const registerbutton = document.querySelector("#register-button");
 const searchBar = document.querySelector("#search-bar");
 
 const overlay = document.querySelector(".overlay");
-const editBox = document.querySelector(".edit-box");
+const overlayBoxes = document.querySelectorAll(".overlay-box");
+
+const editBox = document.querySelector("#edit-box");
 const editFace = document.querySelector("#edit-faceclaim");
 const editClan = document.querySelector("#edit-clanname");
 const editName = document.querySelector("#edit-name");
@@ -115,7 +117,7 @@ function loadDatabase() {
             prepareTable(queryResult);
         })
         .catch(function (error) {
-
+            alert(error);
         });
 }
 
@@ -140,6 +142,9 @@ function showEditCivitas(index) {
 
         overlay.classList.remove("hidden");
         overlay.classList.add("flex");
+
+        editBox.classList.remove("hidden");
+        editBox.classList.add("visible");
 
         editFace.value = civitas.faceClaim;
         editClan.value = civitas.clanName;
@@ -178,9 +183,18 @@ function onEditClicked() {
 }
 
 overlay.addEventListener("click", (e) => {
-    if (!editBox.contains(e.target)) {
-        overlay.classList.remove("flex");
-        overlay.classList.add("hidden");
+    // Disable close overlay if show login
+    if (loginBox.classList.contains("visible")) {
+
+    } else {
+        overlayBoxes.forEach((box) => {
+            if (!box.contains(e.target)) {
+                overlay.classList.remove("flex");
+                overlay.classList.add("hidden");
+                box.classList.remove("visible");
+                box.classList.add("hidden");
+            }
+        })
     }
 }, false);
 

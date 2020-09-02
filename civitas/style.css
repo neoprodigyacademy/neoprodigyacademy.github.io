@@ -32,7 +32,7 @@ body {
 .overlay {
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,.7);;
+  background: rgba(0,0,0,.85);;
   position: fixed;
   top: 0;
   left: 0;
@@ -40,7 +40,7 @@ body {
 }
 
 .login-box {
-    min-width: 400px;
+    min-width: 350px;
     width: fit-content;
     padding: 40px;
     background: rgba(0,0,0,.5);
@@ -50,7 +50,7 @@ body {
     text-align: center;
   }
 
-  .edit-box {
+  .overlay-box {
     background: black;
   }
   
