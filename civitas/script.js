@@ -6,6 +6,15 @@ const status = document.querySelector("#status");
 const registerbutton = document.querySelector("#register-button");
 const searchBar = document.querySelector("#search-bar");
 
+const overlay = document.querySelector(".overlay");
+const editBox = document.querySelector(".edit-box");
+const editFace = document.querySelector("#edit-faceclaim");
+const editClan = document.querySelector("#edit-clanname");
+const editName = document.querySelector("#edit-name");
+const editProdigy = document.querySelector("#edit-prodigy");
+const editStatus = document.querySelector("#edit-status");
+const editButton = document.querySelector("#edit-button");
+
 var user;
 
 function register() {
@@ -15,7 +24,7 @@ function register() {
             clanName: clanname.value,
             name: yourname.value,
             prodigy: prodigium.value,
-            statusOfFaceClaim: status.value,
+            statusOfFaceClaim: status.value
         };
 
         user = biodata;
@@ -51,7 +60,18 @@ function prepareTable(dataset) {
         paging: false,
         data: dataset,
         dom: '<"top"i>rt<"bottom"><"clear">',
+        columnDefs: [{
+            targets: 0,
+            render: function (data, type, row, meta) {
+                if (type === 'display') {
+                    data = '<i class="material-icons" onClick="showEditCivitas(' + data + ')">edit</i>';
+                    // data = '<a href="' + data + '">' + data + '</a>';
+                }
+                return data;
+            }
+        }],
         columns: [
+            { data: 'index' },
             { data: 'faceClaim' },
             { data: 'clanName' },
             { data: 'name' },
@@ -74,40 +94,88 @@ function loadDatabase() {
     db.collection("NPA-DB").get()
         .then(function(querySnapshot) {
             // on success, create dataset list
+            var i = 0;
             querySnapshot.forEach(function(doc) {
                 let student = doc.data();
                 queryResult.push({
+                    index: i,
+                    id: doc.id,
                     faceClaim: student.faceClaim,
                     clanName: student.clanName,
                     name: student.name,
                     prodigy: student.prodigy,
                     statusOfFaceClaim: student.statusOfFaceClaim,
                 });
+                i++;
             });
 
+            // prepare data table
+            prepareTable(queryResult);
+        })
+        .catch(function(error) {
+            queryResult = [{
+                clanName: "LEE",
+                faceClaim: "Cha Jun Ho",
+                id: "Ia9YruVrWHR28rdezhkJ",
+                index: 0,
+                name: "Jinnan",
+                prodigy: "Ostenium",
+                statusOfFaceClaim: "NPA Student"
+            }];
             // prepare data table
             prepareTable(queryResult);
         });
 }
 
-function refreshDataset() {
-    db.collection("NPA-DB").get()
-    .then(function(querySnapshot) {
-        // on success, create dataset list
-        querySnapshot.forEach(function(doc) {
-            let student = doc.data();
-            queryResult.push({
-                faceClaim: student.faceClaim,
-                clanName: student.clanName,
-                name: student.name,
-                prodigy: student.prodigy,
-                statusOfFaceClaim: student.statusOfFaceClaim,
-            });
-        });
+function showEditCivitas(index) {
+    let civitas = queryResult[index];
+    if (civitas) {
+        selectedID = civitas.id;
 
-        // prepare data table
-        table.data(queryResult).draw(false);
-    });
+        overlay.classList.remove("hidden");
+        overlay.classList.add("flex");
+
+        editFace.value = civitas.faceClaim;
+        editClan.value = civitas.clanName;
+        editName.value = civitas.name;
+        editProdigy.value = civitas.prodigy;
+        editStatus.value = civitas.statusOfFaceClaim;
+
+        editButton.addEventListener("click", function() {
+            onEditClicked();
+        })
+    }    
 }
+
+function submitEditCivitas(id) {
+    db.collection("NPA-DB").doc(id)
+        .set({
+            faceClaim: editFace.value,
+            clanName: editClan.value,
+            name: editName.value,
+            prodigy: editProdigy.value,
+            statusOfFaceClaim: editStatus.value
+        })
+        .then(function() {
+            alert("Data successfully changed!");
+            location.reload();
+        })
+        .catch(function(error) {
+            alert("Error writing document: ", error);
+        });
+}
+
+var selectedID = null;
+
+function onEditClicked() {
+    submitEditCivitas(selectedID);
+}
+
+overlay.addEventListener("click", (e) => {
+    if (!editBox.contains(e.target)){
+        overlay.classList.remove("flex");
+        overlay.classList.add("hidden");
+      }
+}, false);
 
 window.onload = loadDatabase;

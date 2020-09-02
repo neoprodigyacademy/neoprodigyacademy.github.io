@@ -29,13 +29,29 @@ body {
   margin-right: 12px;
 }
 
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,.7);;
+  position: fixed;
+  top: 0;
+  left: 0;
+  align-items: center;
+}
+
 .login-box {
+    min-width: 400px;
+    width: fit-content;
     padding: 40px;
     background: rgba(0,0,0,.5);
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
     text-align: center;
+  }
+
+  .edit-box {
+    background: black;
   }
   
   .login-box h2 {
