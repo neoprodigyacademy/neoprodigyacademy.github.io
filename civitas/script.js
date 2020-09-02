@@ -66,7 +66,8 @@ function prepareTable(dataset) {
             targets: 0,
             render: function (data, type, row, meta) {
                 if (type === 'display') {
-                    data = '<i class="material-icons" onClick="showEditCivitas(' + data + ')">edit</i>';
+                    data = '<span class="material-icons mdl-button" onClick="showEditCivitas(' + data + ')">edit</span>' +
+                        '<span class="material-icons mdl-button" onClick="deleteCivitas(' + data + ')">delete_forever</span>';
                     // data = '<a href="' + data + '">' + data + '</a>';
                 }
                 return data;
@@ -84,9 +85,8 @@ function prepareTable(dataset) {
 
 
     // setup search
-    searchBar.addEventListener("keyup", function(event) {
+    searchBar.addEventListener("keyup", function (event) {
         table.search(searchBar.value).draw();
-        console.log(searchBar.value);
     });
 }
 
@@ -94,10 +94,10 @@ var queryResult = [];
 
 function loadDatabase() {
     db.collection("NPA-DB").get()
-        .then(function(querySnapshot) {
+        .then(function (querySnapshot) {
             // on success, create dataset list
             var i = 0;
-            querySnapshot.forEach(function(doc) {
+            querySnapshot.forEach(function (doc) {
                 let student = doc.data();
                 queryResult.push({
                     index: i,
@@ -114,7 +114,7 @@ function loadDatabase() {
             // prepare data table
             prepareTable(queryResult);
         })
-        .catch(function(error) {
+        .catch(function (error) {
             // queryResult = [{
             //     clanName: "LEE",
             //     faceClaim: "Cha Jun Ho",
@@ -127,6 +127,20 @@ function loadDatabase() {
             // // prepare data table
             // prepareTable(queryResult);
         });
+}
+
+function deleteCivitas(index) {
+    let civitas = queryResult[index];
+    if (civitas) {
+        if (confirm("Are you sure you want to delete?")) {
+            db.collection("NPA-DB").doc(civitas.id).delete().then(function() {
+                alert("Data " + civitas.name + " successfully deleted!");
+                location.reload();
+            }).catch(function(error) {
+                console.error("Error removing data: ", error);
+            });
+        }
+    }
 }
 
 function showEditCivitas(index) {
@@ -143,10 +157,10 @@ function showEditCivitas(index) {
         editProdigy.value = civitas.prodigy;
         editStatus.value = civitas.statusOfFaceClaim;
 
-        editButton.addEventListener("click", function() {
+        editButton.addEventListener("click", function () {
             onEditClicked();
         })
-    }    
+    }
 }
 
 function submitEditCivitas(id) {
@@ -158,11 +172,11 @@ function submitEditCivitas(id) {
             prodigy: editProdigy.value,
             statusOfFaceClaim: editStatus.value
         })
-        .then(function() {
+        .then(function () {
             alert("Data successfully changed!");
             location.reload();
         })
-        .catch(function(error) {
+        .catch(function (error) {
             alert("Error writing document: ", error);
         });
 }
@@ -174,10 +188,10 @@ function onEditClicked() {
 }
 
 overlay.addEventListener("click", (e) => {
-    if (!editBox.contains(e.target)){
+    if (!editBox.contains(e.target)) {
         overlay.classList.remove("flex");
         overlay.classList.add("hidden");
-      }
+    }
 }, false);
 
 loadButton.addEventListener("click", loadDatabase);
