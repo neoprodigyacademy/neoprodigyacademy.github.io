@@ -48,7 +48,7 @@ var table;
 
 function prepareTable(dataset) {
     table = $('#table_id').DataTable({
-        paging: true,
+        paging: false,
         data: dataset,
         dom: '<"top"i>rt<"bottom"><"clear">',
         columns: [
