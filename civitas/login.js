@@ -24,7 +24,8 @@ function showLoginModal() {
 }
 
 window.onload = () => {
-    showWarning();
+    // showWarning();
+    loadSingleDatabase();
 }
 
 function login() {

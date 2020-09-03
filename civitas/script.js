@@ -96,40 +96,45 @@ function prepareTable(dataset) {
 
 var queryResult = [];
 
-// function loadDatabase() {
-//     db.collection("NPA-DB").get()
-//         .then(function (querySnapshot) {
-//             // on success, create dataset list
-//             var i = 0;
-//             querySnapshot.forEach(function (doc) {
-//                 let student = doc.data();
-//                 queryResult.push({
-//                     index: i,
-//                     id: doc.id,
-//                     faceClaim: student.faceClaim,
-//                     clanName: student.clanName,
-//                     name: student.name,
-//                     prodigy: student.prodigy,
-//                     statusOfFaceClaim: student.statusOfFaceClaim,
-//                 });
-//                 i++;
-//             });
+function loadThenConvert() {
+    db.collection("NPA-DB").get()
+        .then(function (querySnapshot) {
+            // on success, create dataset list
+            var i = 0;
+            queryResult = []; // reset to empty
+            querySnapshot.forEach(function (doc) {
+                let student = doc.data();
+                queryResult.push({
+                    index: i,
+                    id: doc.id,
+                    faceClaim: student.faceClaim,
+                    clanName: student.clanName,
+                    name: student.name,
+                    prodigy: student.prodigy,
+                    statusOfFaceClaim: student.statusOfFaceClaim,
+                });
+                i++;
+            });
 
-//             // prepare data table
-//             // prepareTable(queryResult);
-//         })
-//         .catch(function (error) {
-//             alert(error);
-//         });
-// }
+            updateDatabase(queryResult);
 
-function deleteCivitas(index) {
-    let civitas = queryResult[index];
+            // prepare data table
+            // prepareTable(queryResult);
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+}
+
+function deleteCivitas(id) {
+    let civitas = queryDocument.civitas[id];
     if (civitas) {
         if (confirm("Are you sure you want to delete?")) {
             db.collection("NPA-DB").doc(civitas.id).delete().then(function() {
                 alert("Data " + civitas.name + " successfully deleted!");
-                location.reload();
+                // Also, delete the existing single DB
+                delete queryDocument.civitas[id];
+                saveSingleDataset(queryDocument);
             }).catch(function(error) {
                 console.error("Error removing data: ", error);
             });
@@ -178,35 +183,48 @@ function submitEditCivitas(id) {
         })
         .then(function () {
             alert("Data successfully changed!");
-            location.reload();
+            //location.reload();
         })
         .catch(function (error) {
             alert("Error writing document: ", error);
         });
 }
 
-overlay.addEventListener("click", (e) => {
-    // Disable close overlay if show login
-    if (loginBox.classList.contains("visible") || warningBox.classList.contains("visible")) {
+// overlay.addEventListener("click", (e) => {
+//     // Disable close overlay if show login
+//     if (loginBox.classList.contains("visible")) {
 
-    } else {
+//     } else {
+//         overlay.classList.remove("flex");
+//         overlay.classList.add("hidden");
+        
+//         overlayBoxes.forEach((box) => {
+//             if (!box.contains(e.target)) {
+//                 box.classList.remove("visible");
+//                 box.classList.add("hidden");
+//             }
+//         })
+//     }
+// }, true);
+
+window.onclick = function(event) {
+    if (event.target == overlay) {
+        overlay.classList.remove("flex");
+        overlay.classList.add("hidden");
+
         overlayBoxes.forEach((box) => {
-            if (!box.contains(e.target)) {
-                overlay.classList.remove("flex");
-                overlay.classList.add("hidden");
-                box.classList.remove("visible");
-                box.classList.add("hidden");
-            }
+            box.classList.remove("visible");
+            box.classList.add("hidden");
         })
     }
-}, false);
+  }
 
 const DB_ID = "members"
 
 function saveSingleDataset(data) {
     db.collection("NPA-civitas").doc(DB_ID).set(data)
         .then(() => {
-            alert("Database converted");
+            alert("Database updated");
         })
         .catch((error) => {
             alert(error);
@@ -227,7 +245,7 @@ function convertDataset(dataset) {
 
 var queryDocument = null;
 
-function appendDataset(dataset) {
+function updateDatabase(dataset) {
     db.collection("NPA-civitas").doc(DB_ID).get()
         .then((doc) => {
             let students = doc.data();
@@ -235,6 +253,10 @@ function appendDataset(dataset) {
             // Set/edit existing students
             dataset.forEach((data) => {
                 students.civitas[data.id] = data;
+
+                // Delete, if needed
+                db.collection("NPA-DB").doc(data.id).delete()
+                    .then(() => { console.log("Data " + data.id + "successfully deleted") });
             })
 
             saveSingleDataset(students);
@@ -254,7 +276,7 @@ function loadSingleDatabase() {
         });
 }
 
-loadButton.addEventListener("click", () => { convertDataset(queryResult); });
+loadButton.addEventListener("click", () => { loadThenConvert(); });
 
 function showWarning() {
     overlay.classList.remove("hidden");
