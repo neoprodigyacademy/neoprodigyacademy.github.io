@@ -114,7 +114,7 @@ function loadDatabase() {
             });
 
             // prepare data table
-            prepareTable(queryResult);
+            // prepareTable(queryResult);
         })
         .catch(function (error) {
             alert(error);
@@ -198,4 +198,45 @@ overlay.addEventListener("click", (e) => {
     }
 }, false);
 
-loadButton.addEventListener("click", loadDatabase);
+loadButton.addEventListener("click", convertDataset(queryResult));
+
+
+const DB_ID = "members"
+
+function convertDataset(dataset) {
+    var doc = {
+        lastUpdate: new Date(),
+        civitas: []
+    };
+
+    // dataset.forEach((data, index) => {
+    //     doc.civitas.push(data);
+    // })
+
+    doc.civitas = dataset.map((student) => [student.id, student])
+
+    db.collection("NPA-civitas").doc(DB_ID).set(doc)
+        .then(() => {
+            alert("Database converted");
+        })
+        .catch((error) => {
+            alert(error);
+        })
+}
+
+function appendDataset(dataset) {
+
+}
+
+function loadSingleDatabase() {
+    db.collection("NPA-civitas").doc(DB_ID).get()
+        .then(function (doc) {
+            let civitas = doc.data().civitas;
+            queryResult = Object.keys(civitas).map((key) => civitas[key]);
+            // prepare data table
+            prepareTable(queryResult);
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+}
