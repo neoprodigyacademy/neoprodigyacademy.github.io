@@ -13,7 +13,7 @@ password.addEventListener("keyup", function (event) {
     }
 });
 
-window.onload = () => {
+function showLoginModal() {
     overlay.classList.remove("hidden");
     overlay.classList.add("flex");
 
@@ -23,10 +23,14 @@ window.onload = () => {
     loginButton.addEventListener("click", login);
 }
 
+window.onload = () => {
+    showWarning();
+}
+
 function login() {
     if (username.value.toLowerCase() == USERNAME && password.value == PASSWORD) {
         closeOverlay();
-        loadDatabase();
+        loadSingleDatabase();
     } else {
         alert("Username or password wrong,\nPlease try again.");
     }

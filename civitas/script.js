@@ -19,6 +19,8 @@ const editButton = document.querySelector("#edit-button");
 
 const loadButton = document.querySelector("#load-button");
 
+const warningBox = document.querySelector('#warning-box');
+
 var user;
 
 function register() {
@@ -94,32 +96,32 @@ function prepareTable(dataset) {
 
 var queryResult = [];
 
-function loadDatabase() {
-    db.collection("NPA-DB").get()
-        .then(function (querySnapshot) {
-            // on success, create dataset list
-            var i = 0;
-            querySnapshot.forEach(function (doc) {
-                let student = doc.data();
-                queryResult.push({
-                    index: i,
-                    id: doc.id,
-                    faceClaim: student.faceClaim,
-                    clanName: student.clanName,
-                    name: student.name,
-                    prodigy: student.prodigy,
-                    statusOfFaceClaim: student.statusOfFaceClaim,
-                });
-                i++;
-            });
+// function loadDatabase() {
+//     db.collection("NPA-DB").get()
+//         .then(function (querySnapshot) {
+//             // on success, create dataset list
+//             var i = 0;
+//             querySnapshot.forEach(function (doc) {
+//                 let student = doc.data();
+//                 queryResult.push({
+//                     index: i,
+//                     id: doc.id,
+//                     faceClaim: student.faceClaim,
+//                     clanName: student.clanName,
+//                     name: student.name,
+//                     prodigy: student.prodigy,
+//                     statusOfFaceClaim: student.statusOfFaceClaim,
+//                 });
+//                 i++;
+//             });
 
-            // prepare data table
-            // prepareTable(queryResult);
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-}
+//             // prepare data table
+//             // prepareTable(queryResult);
+//         })
+//         .catch(function (error) {
+//             alert(error);
+//         });
+// }
 
 function deleteCivitas(index) {
     let civitas = queryResult[index];
@@ -184,7 +186,7 @@ function onEditClicked() {
 
 overlay.addEventListener("click", (e) => {
     // Disable close overlay if show login
-    if (loginBox.classList.contains("visible")) {
+    if (loginBox.classList.contains("visible") || warningBox.classList.contains("visible")) {
 
     } else {
         overlayBoxes.forEach((box) => {
@@ -198,10 +200,17 @@ overlay.addEventListener("click", (e) => {
     }
 }, false);
 
-// loadButton.addEventListener("click", convertDataset(queryResult));
-
-
 const DB_ID = "members"
+
+function saveSingleDataset(data) {
+    db.collection("NPA-civitas").doc(DB_ID).set(data)
+        .then(() => {
+            alert("Database converted");
+        })
+        .catch((error) => {
+            alert(error);
+        });
+}
 
 function convertDataset(dataset) {
     var doc = {
@@ -209,34 +218,48 @@ function convertDataset(dataset) {
         civitas: []
     };
 
-    // dataset.forEach((data, index) => {
-    //     doc.civitas.push(data);
-    // })
+    // doc.civitas = dataset.map((student) => student);
+    doc.civitas = dataset.reduce((obj, student) => Object.assign(obj, { [student.id]: student }), {});
 
-    doc.civitas = dataset.map((student) => [student.id, student])
-
-    db.collection("NPA-civitas").doc(DB_ID).set(doc)
-        .then(() => {
-            alert("Database converted");
-        })
-        .catch((error) => {
-            alert(error);
-        })
+    saveSingleDataset(doc);
 }
 
-function appendDataset(dataset) {
+var queryDocument = null;
 
+function appendDataset(dataset) {
+    db.collection("NPA-civitas").doc(DB_ID).get()
+        .then((doc) => {
+            let students = doc.data();
+
+            // Set/edit existing students
+            dataset.forEach((data) => {
+                students.civitas[data.id] = data;
+            })
+
+            saveSingleDataset(students);
+        })
 }
 
 function loadSingleDatabase() {
     db.collection("NPA-civitas").doc(DB_ID).get()
         .then(function (doc) {
-            let civitas = doc.data().civitas;
-            queryResult = Object.keys(civitas).map((key) => civitas[key]);
+            queryDocument = doc.data();
+            queryResult = Object.keys(queryDocument.civitas).map((key) => queryDocument.civitas[key]);
             // prepare data table
             prepareTable(queryResult);
         })
         .catch(function (error) {
             alert(error);
         });
+}
+
+loadButton.addEventListener("click", () => { convertDataset(queryResult); });
+
+function showWarning() {
+    overlay.classList.remove("hidden");
+    overlay.classList.add("flex");
+
+    warningBox.classList.remove("hidden");
+    warningBox.classList.add("visible");
+
 }
