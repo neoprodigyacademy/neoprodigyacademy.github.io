@@ -198,7 +198,7 @@ overlay.addEventListener("click", (e) => {
     }
 }, false);
 
-loadButton.addEventListener("click", convertDataset(queryResult));
+// loadButton.addEventListener("click", convertDataset(queryResult));
 
 
 const DB_ID = "members"
