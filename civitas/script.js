@@ -70,15 +70,15 @@ function prepareTable(dataset) {
             targets: 0,
             render: function (data, type, row, meta) {
                 if (type === 'display') {
-                    data = '<span class="material-icons mdl-button margin-r8" onClick="showEditCivitas(' + data + ')">edit</span>' +
-                        '<span class="material-icons mdl-button" onClick="deleteCivitas(' + data + ')">delete_forever</span>';
+                    data = '<span class="material-icons mdl-button margin-r8" onClick="showEditCivitas(\'' + data + '\')">edit</span>' +
+                        '<span class="material-icons mdl-button" onClick="deleteCivitas(\'' + data + '\')">delete_forever</span>';
                     // data = '<a href="' + data + '">' + data + '</a>';
                 }
                 return data;
             }
         }],
         columns: [
-            { data: 'index' },
+            { data: 'id' },
             { data: 'faceClaim' },
             { data: 'clanName' },
             { data: 'name' },
@@ -137,11 +137,22 @@ function deleteCivitas(index) {
     }
 }
 
-function showEditCivitas(index) {
-    let civitas = queryResult[index];
-    if (civitas) {
-        selectedID = civitas.id;
 
+var selectedID = null;
+
+editButton.addEventListener("click", function () {
+    onEditClicked();
+})
+
+function onEditClicked() {
+    submitEditCivitas(selectedID);
+    selectedID = null; // Reset
+}
+
+function showEditCivitas(id) {
+    let civitas = queryDocument.civitas[id];
+    if (civitas) {
+        selectedID = id;
         overlay.classList.remove("hidden");
         overlay.classList.add("flex");
 
@@ -153,10 +164,6 @@ function showEditCivitas(index) {
         editName.value = civitas.name;
         editProdigy.value = civitas.prodigy;
         editStatus.value = civitas.statusOfFaceClaim;
-
-        editButton.addEventListener("click", function () {
-            onEditClicked();
-        })
     }
 }
 
@@ -176,12 +183,6 @@ function submitEditCivitas(id) {
         .catch(function (error) {
             alert("Error writing document: ", error);
         });
-}
-
-var selectedID = null;
-
-function onEditClicked() {
-    submitEditCivitas(selectedID);
 }
 
 overlay.addEventListener("click", (e) => {
