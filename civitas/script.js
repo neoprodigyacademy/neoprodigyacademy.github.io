@@ -40,8 +40,7 @@ function register() {
             .add(biodata)
             .then((docRef) => {
                 console.log("Document written with ID: ", docRef.id);
-                alert("Your data is successfully registered!");
-                faceclaim.value = "";
+                alert("Data successfully registered! Your data will be displayed after 1x24 hour.\nIf no changes present, please contact admin to make sure your data is up-to-date");                faceclaim.value = "";
                 clanname.value = "";
                 yourname.value = "";
                 prodigium.value = "";
@@ -242,7 +241,7 @@ function updateDatabase(dataset) {
                     .then(() => { console.log("Data " + data.id + "successfully deleted") });
             })
 
-            saveSingleDataset(students);
+            saveSingleDataset(students, true);
         })
 }
 
