@@ -20,6 +20,7 @@ const editButton = document.querySelector("#edit-button");
 const loadButton = document.querySelector("#load-button");
 
 const warningBox = document.querySelector('#warning-box');
+const closeWarningButton = document.querySelector('#close-warning-button');
 
 var user;
 
@@ -96,40 +97,45 @@ function prepareTable(dataset) {
 
 var queryResult = [];
 
-// function loadDatabase() {
-//     db.collection("NPA-DB").get()
-//         .then(function (querySnapshot) {
-//             // on success, create dataset list
-//             var i = 0;
-//             querySnapshot.forEach(function (doc) {
-//                 let student = doc.data();
-//                 queryResult.push({
-//                     index: i,
-//                     id: doc.id,
-//                     faceClaim: student.faceClaim,
-//                     clanName: student.clanName,
-//                     name: student.name,
-//                     prodigy: student.prodigy,
-//                     statusOfFaceClaim: student.statusOfFaceClaim,
-//                 });
-//                 i++;
-//             });
+function loadThenConvert() {
+    db.collection("NPA-DB").get()
+        .then(function (querySnapshot) {
+            // on success, create dataset list
+            var i = 0;
+            queryResult = []; // reset to empty
+            querySnapshot.forEach(function (doc) {
+                let student = doc.data();
+                queryResult.push({
+                    index: i,
+                    id: doc.id,
+                    faceClaim: student.faceClaim,
+                    clanName: student.clanName,
+                    name: student.name,
+                    prodigy: student.prodigy,
+                    statusOfFaceClaim: student.statusOfFaceClaim,
+                });
+                i++;
+            });
 
-//             // prepare data table
-//             // prepareTable(queryResult);
-//         })
-//         .catch(function (error) {
-//             alert(error);
-//         });
-// }
+            updateDatabase(queryResult);
 
-function deleteCivitas(index) {
-    let civitas = queryResult[index];
+            // prepare data table
+            // prepareTable(queryResult);
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+}
+
+function deleteCivitas(id) {
+    let civitas = queryDocument.civitas[id];
     if (civitas) {
         if (confirm("Are you sure you want to delete?")) {
             db.collection("NPA-DB").doc(civitas.id).delete().then(function() {
                 alert("Data " + civitas.name + " successfully deleted!");
-                location.reload();
+                // Also, delete the existing single DB
+                delete queryDocument.civitas[id];
+                saveSingleDataset(queryDocument, true); // on delete success
             }).catch(function(error) {
                 console.error("Error removing data: ", error);
             });
@@ -177,36 +183,31 @@ function submitEditCivitas(id) {
             statusOfFaceClaim: editStatus.value
         })
         .then(function () {
-            alert("Data successfully changed!");
-            location.reload();
+            alert("Data successfully changed! Your data will be displayed after 1x24 hour.\nIf no changes present, please contact admin to make sure your data is up-to-date");
+            //location.reload();
         })
         .catch(function (error) {
             alert("Error writing document: ", error);
         });
 }
 
-overlay.addEventListener("click", (e) => {
-    // Disable close overlay if show login
-    if (loginBox.classList.contains("visible") || warningBox.classList.contains("visible")) {
-
-    } else {
-        overlayBoxes.forEach((box) => {
-            if (!box.contains(e.target)) {
-                overlay.classList.remove("flex");
-                overlay.classList.add("hidden");
-                box.classList.remove("visible");
-                box.classList.add("hidden");
-            }
-        })
+function onOverlayClicked(event) {
+    if (event.target == overlay && !loginBox.classList.contains("visible")) {
+        closeOverlay();
     }
-}, false);
+}
+
+window.onclick = onOverlayClicked
 
 const DB_ID = "members"
 
-function saveSingleDataset(data) {
+function saveSingleDataset(data, refresh = false) {
     db.collection("NPA-civitas").doc(DB_ID).set(data)
         .then(() => {
-            alert("Database converted");
+            alert("Database updated");
+            if (refresh) {
+                location.reload();
+            }
         })
         .catch((error) => {
             alert(error);
@@ -222,12 +223,12 @@ function convertDataset(dataset) {
     // doc.civitas = dataset.map((student) => student);
     doc.civitas = dataset.reduce((obj, student) => Object.assign(obj, { [student.id]: student }), {});
 
-    saveSingleDataset(doc);
+    saveSingleDataset(doc, true); // convert multidocs to single doc
 }
 
 var queryDocument = null;
 
-function appendDataset(dataset) {
+function updateDatabase(dataset) {
     db.collection("NPA-civitas").doc(DB_ID).get()
         .then((doc) => {
             let students = doc.data();
@@ -235,6 +236,10 @@ function appendDataset(dataset) {
             // Set/edit existing students
             dataset.forEach((data) => {
                 students.civitas[data.id] = data;
+
+                // Delete, if needed
+                db.collection("NPA-DB").doc(data.id).delete()
+                    .then(() => { console.log("Data " + data.id + "successfully deleted") });
             })
 
             saveSingleDataset(students);
@@ -254,13 +259,4 @@ function loadSingleDatabase() {
         });
 }
 
-loadButton.addEventListener("click", () => { convertDataset(queryResult); });
-
-function showWarning() {
-    overlay.classList.remove("hidden");
-    overlay.classList.add("flex");
-
-    warningBox.classList.remove("hidden");
-    warningBox.classList.add("visible");
-
-}
+loadButton.addEventListener("click", () => { loadThenConvert(); });
