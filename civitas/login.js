@@ -6,6 +6,9 @@ const loginButton = document.querySelector("#login-button");
 const USERNAME = "npacivitas";
 const PASSWORD = "neoprodigyacademy";
 
+const ADMIN_USERNAME = "itsraxeira";
+const ADMIN_PASSWORD = "github";
+
 password.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
@@ -23,18 +26,18 @@ function showLoginModal() {
     loginButton.addEventListener("click", login);
 }
 
-window.onload = () => {
-    // showWarning();
-    loadSingleDatabase();
-}
-
 function login() {
-    if (username.value.toLowerCase() == USERNAME && password.value == PASSWORD) {
-        closeOverlay();
-        loadSingleDatabase();
+    if (username.value && password.value) {
+        firebaseLogin(username.value, password.value);
     } else {
         alert("Username or password wrong,\nPlease try again.");
     }
+}
+
+function showDashboard(isAdmin) {
+    closeOverlay();
+    loadSingleDatabase();
+    if (isAdmin) loadButton.style.display = "inline-block";
 }
 
 function closeOverlay() {
@@ -67,3 +70,34 @@ function getCookie(cname) {
     }
     return "";
 }
+
+function showWarning() {
+    overlay.classList.remove("hidden");
+    overlay.classList.add("flex");
+
+    warningBox.classList.remove("hidden");
+    warningBox.classList.add("visible");
+}
+
+closeWarningButton.addEventListener("click", (event) => {
+    closeOverlay(event);
+    showLoginModal()
+});
+
+window.onload = () => {
+    // showWarning();
+    // loadSingleDatabase();
+}
+
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        if (user.email == "itsraxeira@gmail.com") {
+            showDashboard(true);
+        } else {
+            showDashboard(false);
+        }
+    } else {
+        showWarning()
+    }
+});

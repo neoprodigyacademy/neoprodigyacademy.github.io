@@ -20,6 +20,7 @@ const editButton = document.querySelector("#edit-button");
 const loadButton = document.querySelector("#load-button");
 
 const warningBox = document.querySelector('#warning-box');
+const closeWarningButton = document.querySelector('#close-warning-button');
 
 var user;
 
@@ -190,34 +191,13 @@ function submitEditCivitas(id) {
         });
 }
 
-// overlay.addEventListener("click", (e) => {
-//     // Disable close overlay if show login
-//     if (loginBox.classList.contains("visible")) {
-
-//     } else {
-//         overlay.classList.remove("flex");
-//         overlay.classList.add("hidden");
-        
-//         overlayBoxes.forEach((box) => {
-//             if (!box.contains(e.target)) {
-//                 box.classList.remove("visible");
-//                 box.classList.add("hidden");
-//             }
-//         })
-//     }
-// }, true);
-
-window.onclick = function(event) {
-    if (event.target == overlay) {
-        overlay.classList.remove("flex");
-        overlay.classList.add("hidden");
-
-        overlayBoxes.forEach((box) => {
-            box.classList.remove("visible");
-            box.classList.add("hidden");
-        })
+function onOverlayClicked(event) {
+    if (event.target == overlay && !loginBox.classList.contains("visible")) {
+        closeOverlay();
     }
-  }
+}
+
+window.onclick = onOverlayClicked
 
 const DB_ID = "members"
 
@@ -277,12 +257,3 @@ function loadSingleDatabase() {
 }
 
 loadButton.addEventListener("click", () => { loadThenConvert(); });
-
-function showWarning() {
-    overlay.classList.remove("hidden");
-    overlay.classList.add("flex");
-
-    warningBox.classList.remove("hidden");
-    warningBox.classList.add("visible");
-
-}

@@ -11,3 +11,14 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var db = firebase.firestore();
+
+function firebaseLogin(email, password) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+            alert(errorCode + ': ' + errorMessage);
+        });
+}
