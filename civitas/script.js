@@ -135,7 +135,7 @@ function deleteCivitas(id) {
                 alert("Data " + civitas.name + " successfully deleted!");
                 // Also, delete the existing single DB
                 delete queryDocument.civitas[id];
-                saveSingleDataset(queryDocument);
+                saveSingleDataset(queryDocument, true); // on delete success
             }).catch(function(error) {
                 console.error("Error removing data: ", error);
             });
@@ -183,7 +183,7 @@ function submitEditCivitas(id) {
             statusOfFaceClaim: editStatus.value
         })
         .then(function () {
-            alert("Data successfully changed!");
+            alert("Data successfully changed! Your data will be displayed after 1x24 hour.\nIf no changes present, please contact admin to make sure your data is up-to-date");
             //location.reload();
         })
         .catch(function (error) {
@@ -201,10 +201,13 @@ window.onclick = onOverlayClicked
 
 const DB_ID = "members"
 
-function saveSingleDataset(data) {
+function saveSingleDataset(data, refresh = false) {
     db.collection("NPA-civitas").doc(DB_ID).set(data)
         .then(() => {
             alert("Database updated");
+            if (refresh) {
+                location.reload();
+            }
         })
         .catch((error) => {
             alert(error);
@@ -220,7 +223,7 @@ function convertDataset(dataset) {
     // doc.civitas = dataset.map((student) => student);
     doc.civitas = dataset.reduce((obj, student) => Object.assign(obj, { [student.id]: student }), {});
 
-    saveSingleDataset(doc);
+    saveSingleDataset(doc, true); // convert multidocs to single doc
 }
 
 var queryDocument = null;
