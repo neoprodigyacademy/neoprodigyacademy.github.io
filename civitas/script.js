@@ -63,7 +63,7 @@ var table;
 
 function prepareTable(dataset) {
     table = $('#table_id').DataTable({
-        paging: false,
+        paging: true,
         data: dataset,
         dom: '<"top"i>rt<"bottom"><"clear">',
         columnDefs: [{
