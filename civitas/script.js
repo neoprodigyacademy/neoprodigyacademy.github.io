@@ -259,3 +259,12 @@ function loadSingleDatabase() {
 }
 
 loadButton.addEventListener("click", () => { loadThenConvert(); });
+
+function dumpToCSV() {
+    var output = "ID;Clan;Name;Prodigy;Status";
+    queryResult.forEach((user) => {
+        var toAppend = "\n" + user.id + ";" + user.clanName + ";" + user.name + ";" + user.prodigy + ";" + user.statusOfFaceClaim;
+        output += toAppend
+    })
+    return output;
+}
