@@ -7,9 +7,6 @@ const c2D = canvas.getContext("2d");
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
 
-const name = document.querySelector("#name");
-const submitName = document.querySelector("#submit");
-
 const IMG_CERTIFICATE = "../assets/certificate.png";
 
 function drawImage(url, name) {
