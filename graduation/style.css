@@ -2,10 +2,6 @@
     width: 100%;
 }
 
-#certificate {
-    width: 1000px;
-}
-
 #tab {
     margin-top: 16px;
 }
@@ -29,5 +25,9 @@ h1 {
 }
 
 .download {
-    margin: 16px;
+    margin: 16px auto;
+}
+
+.center-child {
+    text-align: center;
 }
