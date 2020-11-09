@@ -53,6 +53,7 @@ function drawTranscriptName(name) {
     trC2D.textAlign = "left";
     trC2D.font = "20px Alegreya";
     trC2D.fillText(name.toUpperCase(), 193, 245);
+    trC2D.fillText(name.hashCode(), 193, 280);
 }
 
 function drawScore(scores) {
