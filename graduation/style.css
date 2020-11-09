@@ -22,3 +22,8 @@ h1 {
 #kit {
     display: none;
 }
+
+.header {
+    margin-bottom: 40px;
+    padding: 0px !important;
+}

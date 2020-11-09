@@ -1,4 +1,5 @@
 const name = document.querySelector("#name");
+const prodigy = document.querySelector("#prodigy");
 const submitName = document.querySelector("#submit");
 const upload = document.querySelector("#upload");
 const graduationKit = document.querySelector("#kit");
