@@ -19,27 +19,27 @@
             <hr class="my-4">
         </div>
         <div class="row">
-            <form action="#" class="col col-sm form-row">
-                <div class="form-group col-md-6">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Name" class="form-control" />
+            <form action="#" class="col col-sm">
+                <div class="form-group row">
+                    <label for="name" class="col-md-2">Name</label>
+                    <input type="text" id="name" placeholder="Name" class="form-control col-md-6" />
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="prodigy">Prodigy</label>
-                    <select class="form-control" id="prodigy">
+                <div class="form-group row">
+                    <label for="prodigy" class="col-md-2">Prodigy</label>
+                    <select class="form-control col-md-6" id="prodigy">
                         <option value="Nordenium">Nordenium</option>
-                        <option value="Vestenium">Vestenium</option>
-                        <option value="Sydenium">Sydenium</option>
                         <option value="Ostenium">Ostenium</option>
+                        <option value="Sydenium">Sydenium</option>
+                        <option value="Vestenium">Vestenium</option>
                     </select>
                 </div>
-                <div class="custom-file form-group col-md-4">
-                    <input type="file" class="custom-file-input" id="upload" aria-describedby="upload-file"
+                <div class="form-group row">
+                    <label class="col-md-2" for="upload-file">Profile Picture</label>
+                    <input type="file" class="form-control-file col-md-6" id="upload" aria-describedby="upload-file"
                         accept="image/*" />
-                    <label class="custom-file-label" for="upload-file">Profile Picture</label>
                 </div>
-                <div class="form-group">
-                    <button type="button" id="submit" class="btn btn-primary">submit</button>
+                <div class="form-group row">
+                    <button type="button" id="submit" class="btn btn-primary col-md-6 offset-md-2">submit</button>
                 </div>
             </form>
         </div>
