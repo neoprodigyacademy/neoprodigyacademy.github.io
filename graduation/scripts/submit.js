@@ -1,6 +1,7 @@
 function submit() {
     graduationKit.style.display = "block";
     drawCertificate(IMG_CERTIFICATE, name.value)
+    drawTranscript(TRANSCRIPT_PREFIX + prodigy.value.toLowerCase() + ".png");
     selectGown(prodigy.value);
 }
 

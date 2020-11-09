@@ -1,6 +1,6 @@
 const IMG_CERTIFICATE = "../assets/certificate.png";
-const WIDTH = 1000;
-const HEIGHT = 1425;
+const CERT_WIDTH = 1000;
+const CERT_HEIGHT = 1425;
 const FONT_SIZE = 46;
 const NAME_HEIGHT_OFFSET = 450;
 
@@ -9,9 +9,8 @@ const PP_HEIGHT = 128;
 
 const canvas = document.querySelector("#canvas");
 const c2D = canvas.getContext("2d");
-canvas.width = WIDTH;
-canvas.height = HEIGHT;
-
+canvas.width = CERT_WIDTH;
+canvas.height = CERT_HEIGHT;
 
 function drawCertificate(url, name) {
     const image = new Image();
@@ -28,7 +27,7 @@ function drawCertificate(url, name) {
 function drawName(name, font = "Helvetica") {
     c2D.textAlign = "center";
     c2D.font = FONT_SIZE + "px " + font;
-    c2D.fillText(name, WIDTH / 2, NAME_HEIGHT_OFFSET);
+    c2D.fillText(name, CERT_WIDTH / 2, NAME_HEIGHT_OFFSET);
 }
 
 window.onload = () => {

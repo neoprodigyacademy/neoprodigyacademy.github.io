@@ -1,3 +1,14 @@
+const TRANSCRIPT_PREFIX = "../assets/transcript_";
+const TRANSCRIPT_SUFFIX = ".png";
+
+const TRANSCRIPT_WIDTH = 1000;
+const TRANSCRIPT_HEIGHT = 1425;
+
+const trCanvas = document.querySelector("#transcript-canvas");
+const trC2D = trCanvas.getContext("2d");
+trCanvas.width = TRANSCRIPT_WIDTH;
+trCanvas.height = TRANSCRIPT_HEIGHT;
+
 function generateScore(name) {
     var output = [];
     generateRawScore(name).forEach((i) => {
@@ -26,4 +37,12 @@ function sumGPA(name) {
         gpa += score;
     })
     return gpa;
+}
+
+function drawTranscript(url, name) {
+    const image = new Image();
+    image.src = url;
+    image.onload = () => {
+        trC2D.drawImage(image, 0, 0, trCanvas.width, trCanvas.height);
+    }
 }
