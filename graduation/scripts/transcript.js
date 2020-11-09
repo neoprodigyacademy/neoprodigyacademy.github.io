@@ -64,3 +64,10 @@ function drawScore(scores) {
         trC2D.fillText(scores[i], 400, 537 + (i * 35));
     }
 }
+
+const downloadTranscript = document.querySelector("#transcript-download");
+
+downloadTranscript.onclick = () => {
+    var url = canvas.toDataURL("image/png");
+    downloadTranscript.href = url;
+}
