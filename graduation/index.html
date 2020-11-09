@@ -59,7 +59,10 @@
             </ul>
             <div class="tab-content row" id="tab-content">
                 <div class="tab-pane fade show active" id="certificate" role="tabpanel" aria-labelledby="certificate-tab">
-                    <canvas id="canvas" class="col col-xl"></canvas>
+                    <div class="row col col-xl">
+                        <a id="certificate-download" class="btn btn-primary" download="certificate.png">Download</a>
+                        <canvas id="canvas"></canvas>
+                    </div>
                 </div>
                 
                 <div class="tab-pane fade" id="transcript" role="tabpanel" aria-labelledby="transcript-tab">
