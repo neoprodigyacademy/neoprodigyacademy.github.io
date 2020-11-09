@@ -1,6 +1,7 @@
 const name = document.querySelector("#name");
 const submitName = document.querySelector("#submit");
 const upload = document.querySelector("#upload");
+const graduationKit = document.querySelector("#kit");
 
 var profilePicture = null;
 
@@ -22,3 +23,10 @@ upload.addEventListener('change', (e) => {
     }
 });
 
+String.prototype.hashCode = function() {
+    var hash = 0, i = 0, len = this.length;
+    while ( i < len ) {
+        hash  = ((hash << 5) - hash + this.charCodeAt(i++)) << 0;
+    }
+    return (hash + 2147483647) + 1;
+};
