@@ -1,4 +1,15 @@
 #canvas {
-    width: 1280px;
-    height: 913px;
+    width: 100%;
+}
+
+#certificate {
+    width: 1140px;
+}
+
+#tab {
+    margin-top: 16px;
+}
+
+#h1 {
+    text-align: center;
 }
