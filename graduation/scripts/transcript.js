@@ -44,5 +44,22 @@ function drawTranscript(url, name) {
     image.src = url;
     image.onload = () => {
         trC2D.drawImage(image, 0, 0, trCanvas.width, trCanvas.height);
+        drawTranscriptName(name);
+        drawScore(generateScore(name));
+    }
+}
+
+function drawTranscriptName(name) {
+    trC2D.textAlign = "left";
+    trC2D.font = "20px Alegreya";
+    trC2D.fillText(name.toUpperCase(), 193, 245);
+}
+
+function drawScore(scores) {
+    trC2D.textAlign = "center";
+    trC2D.font = "21px Alegreya";
+
+    for (i = 0; i < 9; i++) {
+        trC2D.fillText(scores[i], 400, 537 + (i * 35));
     }
 }
