@@ -33,3 +33,10 @@ function drawName(name, font = "Helvetica") {
 window.onload = () => {
     drawCertificate(IMG_CERTIFICATE, "");
 }
+
+const downloadCertificate = document.querySelector("#certificate-download");
+
+downloadCertificate.onclick = () => {
+    var url = canvas.toDataURL("image/png");
+    downloadCertificate.href = url;
+}
