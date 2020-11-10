@@ -15,7 +15,8 @@
 -------------------------------------------------------------- */
 	body {
 		font-family: 'Cardo',Arial,sans-serif;
-		background:url(http://www.bluesdream.com/case/css3/3d-book-showcase/images/body_bg.jpg);
+		/* background:url(http://www.bluesdream.com/case/css3/3d-book-showcase/images/body_bg.jpg); */
+		background: whitesmoke;
 	}
 	.txt-right{
 		text-align:right;
