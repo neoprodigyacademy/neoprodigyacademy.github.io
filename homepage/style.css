@@ -4,6 +4,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
 }
 
 main {
@@ -136,9 +137,93 @@ main {
 }
 
 .form {
-  width: 400px;
-  height: 400px;
+  width: 540px;
+  height: 100%;
   background-color: #ccc;
   position: absolute;
-  
+  left: -540px;
+  transition: 0.2s;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.form a {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.form .form-logo {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.form > form {
+  padding: 20px;
+}
+
+.input-button {
+  padding: 8px 12px;
+  outline: none;
+  border: 0;
+  color: #fff;
+  border-radius: 4px;
+  background: #13264e;
+  font-size: 20px;
+  font-family: sans-serif;
+  transition: 0.3s;
+  cursor: pointer;
+  width: 100%;
+}
+.input-button:hover {
+  background: #dddddd;
+}
+
+.input-label {
+  font-size: 20px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #13264e;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.input-block {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  padding: 10px 10px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+.input-block input, .input-block select {
+  font-size: 20px;
+  font-family: sans-serif;
+  outline: 0;
+  border: 0;
+  padding: 6px;
+}
+
+.input-block input::placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+.input-block:focus-within {
+  border-color: #13264e;
+}
+.input-block:focus-within .input-label {
+  color: rgba(140, 117, 105, 0.8);
 }
