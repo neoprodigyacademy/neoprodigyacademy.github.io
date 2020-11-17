@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>NEO Prodigy Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <main class="main">
+
+    <!-- START: LOGO -->
+    <section class="card-lg__container">
+      <p class="card__text-sm">We are your vision</p>
+      <h1 class="card__text-lg">NEO Prodigy Academy</h1>
+      <p class="card__text-md">National network of prodigy studies scholars since 1997.</p>
+      <a href="#" class="card__btn" id="register_btn">Register</a>
+    </section>
+
+    <section class="card-sm__container">
+
+      <!-- START: CARD -->
+      <section class="card-sm"
+        style="background-image: url('https://i.pinimg.com/564x/f8/9d/04/f89d04a0f27aff636a53112d7eb247c4.jpg')">
+        <p class="card__text-sm">01</p>
+        <h1 class="card__text-lg">Invitation Letter</h1>
+      </section>
+      <!-- END: CARD -->
+
+      <!-- START: CARD -->
+      <section class="card-sm"
+        style="background-image:url('https://i.pinimg.com/564x/9b/6f/9d/9b6f9de09cf9f845281811e86e66a609.jpg')">
+        <p class="card__text-sm">02</p>
+        <h1 class="card__text-lg">Certificate</h1>
+      </section>
+      <!-- END: CARD -->
+
+      <!-- START: CARD -->
+      <section class="card-sm"
+        style="background-image: url('https://i.pinimg.com/564x/c3/bf/16/c3bf1670ed7612883e7c59c2e8fa8c34.jpg')">
+        <p class="card__text-sm">03</p>
+        <h1 class="card__text-lg">Transcript</h1>
+      </section>
+      <!-- END: CARD -->
+
+      <!-- START: CARD -->
+      <section class="card-sm"
+        style="background-image: url('https://i.pinimg.com/564x/77/a2/48/77a24854538f89dce70b34cdfc790c96.jpg')">
+        <p class="card__text-sm">04</p>
+        <h1 class="card__text-lg">Graduation Kit</h1>
+      </section>
+      <!-- END: CARD -->
+    </section>
+
+    <section class="form">
+      <a href="javascript:void(0)" id="hideRegister">&times;</a>
+      <form>
+        <img src="../assets/photo.png" class="form-logo">
+        <div class="input-block">
+          <label for="name" class="input-label">Name</label>
+          <input type="text" name="name" id="name" placeholder="Name">
+        </div>
+        <div class="input-block">
+          <label for="prodigy" class="input-label">Prodigy</label>
+          <select id="prodigy">
+              <option value="Nordenium">Nordenium</option>
+              <option value="Ostenium">Ostenium</option>
+              <option value="Sydenium">Sydenium</option>
+              <option value="Vestenium">Vestenium</option>
+          </select>
+      </div>
+        <div class="input-block">
+          <label class="input-label" for="upload-file">Profile Picture</label>
+          <input type="file" id="upload" aria-describedby="upload-file" accept="image/*" />
+      </div>
+        <div class="modal-buttons">
+          <button type="button" id="submit" class="input-button" id="login-button">Submit</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+  <!-- partial -->
+  <script src="./script.js"></script>
+
+</body>
+
+</html>

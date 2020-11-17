@@ -1,0 +1,229 @@
+body {
+  background: #ddd;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+main {
+  background: #ccc;
+  background: url("../assets/NPA02.jpg") no-repeat center center;
+  background-size: cover;
+  box-shadow: inset 0 0 100vw 100vw rgba(0, 0, 0, 0.3), 0 16px 8px -8px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  padding: 0 0 0 0;
+  display: flex;
+  overflow-x: scroll;
+  align-items: flex-end;
+}
+
+/*CARD*/
+.card__btn {
+  color: #fff;
+  border: 4px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  font-family: sans-serif;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 176px;
+  margin: -10px 0 10px;
+  opacity: 0.5;
+  padding: 16px;
+}
+
+.card__text-sm {
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 20px;
+  margin: 0;
+  padding: 32px 0 16px;
+  position: relative;
+}
+
+.card__text-sm::before {
+  content: "";
+  background: #fff;
+  height: 3px;
+  width: 32px;
+  position: absolute;
+  top: 0;
+}
+
+.card__text-lg {
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.2;
+  width: 100%;
+  margin: 0;
+}
+
+/*...large...*/
+.card-lg__container {
+  padding: 0 32px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.card-lg__container .card__text-lg {
+  font-family: "Oswald", sans-serif;
+  font-size: 120px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 125px;
+}
+.card-lg__container .card__text-md {
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 1.5;
+  padding: 0 32px 20px 0;
+  opacity: 0.5;
+}
+.card-lg__container .card__text-sm {
+  font-size: 28px;
+}
+.card-lg__container .card__text-sm::before {
+  width: 48px;
+  height: 4px;
+}
+
+/*...small...*/
+.card-sm__container {
+  height: 550px;
+  margin: 0 0 100px 100px;
+  display: flex;
+  
+}
+
+.card-sm {
+  background: #ccc;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: inset 0 0 100vw 100vw rgba(0, 0, 0, 0.3), 0 16px 8px -8px rgba(0, 0, 0, 0.4);
+  border-radius: 24px;
+  width: 300px;
+  height: calc(100% - 64px);
+  margin: 0 10px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.card-sm:hover {
+  margin: -10px 10px 0;
+}
+.card-sm .card__text-sm {
+  opacity: 0.8;
+}
+
+/*HIDE DEFAULT SCROLL BAR*/
+.main::-webkit-scrollbar {
+  display: none;
+}
+
+.main {
+  -ms-overflow-style: none;
+}
+
+.form {
+  width: 540px;
+  height: 100%;
+  background-color: #ccc;
+  position: absolute;
+  left: -540px;
+  transition: 0.2s;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.form a {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.form .form-logo {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.form > form {
+  padding: 20px;
+}
+
+.input-button {
+  padding: 8px 12px;
+  outline: none;
+  border: 0;
+  color: #fff;
+  border-radius: 4px;
+  background: #13264e;
+  font-size: 20px;
+  font-family: sans-serif;
+  transition: 0.3s;
+  cursor: pointer;
+  width: 100%;
+}
+.input-button:hover {
+  background: #dddddd;
+}
+
+.input-label {
+  font-size: 20px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #13264e;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.input-block {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  padding: 10px 10px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+.input-block input, .input-block select {
+  font-size: 20px;
+  font-family: sans-serif;
+  outline: 0;
+  border: 0;
+  padding: 6px;
+}
+
+.input-block input::placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+.input-block:focus-within {
+  border-color: #13264e;
+}
+.input-block:focus-within .input-label {
+  color: rgba(140, 117, 105, 0.8);
+}
