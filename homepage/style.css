@@ -134,3 +134,11 @@ main {
 .main {
   -ms-overflow-style: none;
 }
+
+.form {
+  width: 400px;
+  height: 400px;
+  background-color: #ccc;
+  position: absolute;
+  
+}
