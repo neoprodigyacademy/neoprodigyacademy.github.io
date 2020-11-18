@@ -31,7 +31,7 @@ main {
   text-decoration: none;
   text-transform: uppercase;
   width: 176px;
-  margin: -10px 0 10px;
+  margin: 10px 20px 10px;
   opacity: 0.5;
   padding: 16px;
 }
@@ -40,7 +40,7 @@ main {
   color: #fff;
   font-family: sans-serif;
   font-size: 20px;
-  margin: 0;
+  margin: 10px 10px 10px;
   padding: 32px 0 16px;
   position: relative;
 }
@@ -62,7 +62,7 @@ main {
   text-transform: uppercase;
   line-height: 1.2;
   width: 100%;
-  margin: 0;
+  margin: 10px 10px 10px;
 }
 
 /*...large...*/
@@ -87,6 +87,7 @@ main {
   line-height: 1.5;
   padding: 0 32px 20px 0;
   opacity: 0.5;
+  margin: 10px 10px 10px;
 }
 .card-lg__container .card__text-sm {
   font-size: 28px;
@@ -143,7 +144,8 @@ main {
 .form {
   width: 540px;
   height: 100%;
-  background-color: #ccc;
+  background-color: #fff;
+  opacity: 0.95;
   position: absolute;
   left: -540px;
   transition: 0.2s;
@@ -164,8 +166,9 @@ main {
 }
 
 .form .form-logo {
-  width: 300px;
-  margin-bottom: 20px;
+  width: 200px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .form > form {
@@ -177,16 +180,17 @@ main {
   outline: none;
   border: 0;
   color: #fff;
-  border-radius: 4px;
-  background: #13264e;
+  border-radius: 10px;
+  background: #000000;
   font-size: 20px;
   font-family: sans-serif;
   transition: 0.3s;
   cursor: pointer;
-  width: 100%;
+  width: 50%;
+  margin-top: 30px;
 }
 .input-button:hover {
-  background: #dddddd;
+  background: #818181;
 }
 
 .input-label {
@@ -194,7 +198,7 @@ main {
   font-family: sans-serif;
   text-transform: uppercase;
   font-weight: 600;
-  color: #13264e;
+  color: #000000;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   margin-bottom: 8px;
@@ -208,7 +212,7 @@ main {
   -webkit-box-direction: normal;
           flex-direction: column;
   padding: 10px 10px 8px;
-  border: 1px solid #ddd;
+  border: 1.5px solid #ddd;
   border-radius: 4px;
   margin-bottom: 8px;
   transition: 0.3s;
@@ -229,5 +233,5 @@ main {
   border-color: #13264e;
 }
 .input-block:focus-within .input-label {
-  color: rgba(140, 117, 105, 0.8);
+  color: #818181;
 }
