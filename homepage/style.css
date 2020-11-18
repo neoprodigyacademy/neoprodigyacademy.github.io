@@ -104,6 +104,10 @@ main {
   
 }
 
+.aspect-ratio-3-4 {
+  padding-top: 75%;
+}
+
 .card-sm {
   background: #ccc;
   background-size: cover;
