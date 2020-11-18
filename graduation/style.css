@@ -10,8 +10,14 @@
     font-size: 3.0rem !important;
 }
 
-#kit {
-    /* display: none; */
+#submit {
+    width: 100%;
+}
+
+#file-preview {
+    width: 75%;
+    max-width: 300px;
+    display: none;
 }
 
 .hidden {
@@ -49,10 +55,23 @@ body .container-fluid {
 }
 
 .sidebar {
-    background-color: rgba(255, 255, 255, 0.3);
     height: 100vh;
     display: flex;
     align-items: flex-end;
+    transform: 0.2s;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .sidebar {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
 }
 
 .slide-out {

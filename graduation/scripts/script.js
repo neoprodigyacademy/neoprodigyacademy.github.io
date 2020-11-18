@@ -3,6 +3,7 @@ const prodigy = document.querySelector("#prodigy");
 const submitName = document.querySelector("#submit");
 const upload = document.querySelector("#upload");
 const graduationKit = document.querySelector("#kit");
+const filePreview = document.querySelector("#file-preview");
 
 var profilePicture = null;
 
@@ -14,6 +15,7 @@ function readImage(file) {
         image.src = e.target.result;
         image.onload = () => {
             profilePicture = image;
+            filePreview.src = image.src;
         }
     }
 }
