@@ -17,7 +17,7 @@
         <div class="row">
             <!-- LEFT SIDEBAR -->
             <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 sidebar" id="sidebar">
-                <form action="#">
+                <form action="#" class="form">
                     <div class="form-group">
                         <input type="text" id="name" placeholder="Name" class="form-control" />
                     </div>
@@ -37,6 +37,14 @@
                         <button type="button" id="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
+
+                <!-- <section class="card-lg__container hidden">
+                    <p class="card__text-sm">We are your vision</p>
+                    <h1 class="card__text-lg">NEO Prodigy Academy</h1>
+                    <p class="card__text-md">National network of prodigy studies scholars since 1997.</p>
+                    <a href="#" class="card__btn" id="register_btn">Register</a>
+                </section> -->
+
             </div>
 
             <!-- RIGHT CONTENT, REFLOW TO BOTTOM IF NECESSARY -->
@@ -101,7 +109,7 @@
 
                         <div class="tab-pane fade" id="transcript" role="tabpanel" aria-labelledby="transcript-tab">
                             <div class="row col col-xl-12">
-                                <a id="certificate-download" class="btn btn-primary download col-md-2"
+                                <a id="transcript-download" class="btn btn-primary download col-md-2"
                                     download="transcript.png">Download</a>
                                 <canvas id="transcript-canvas" class="col col-xl"></canvas>
                             </div>
@@ -114,6 +122,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="overlay hidden">
+        <img id="overlay-img" src="../assets/transcript_nordenium.png"/>
     </div>
 
     <script src="scripts/script.js"></script>

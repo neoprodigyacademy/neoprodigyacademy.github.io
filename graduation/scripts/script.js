@@ -31,3 +31,16 @@ String.prototype.hashCode = function() {
     }
     return (hash + 2147483647) + 1;
 };
+
+const registerButton = document.querySelector("#register_btn");
+
+const form = document.querySelector(".form");
+const registerBtn = document.querySelector("#register_btn");
+registerBtn.onclick = () => {
+    form.style.left = "0";
+}
+
+// const closeBtn = document.querySelector("#hideRegister");
+// closeBtn.onclick = () => {
+//     form.style.left = "-540px";
+// }
