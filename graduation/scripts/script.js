@@ -4,6 +4,7 @@ const submitName = document.querySelector("#submit");
 const upload = document.querySelector("#upload");
 const graduationKit = document.querySelector("#kit");
 const filePreview = document.querySelector("#file-preview");
+const overlay = document.querySelector(".overlay");
 
 var profilePicture = null;
 
@@ -37,10 +38,10 @@ String.prototype.hashCode = function() {
 const registerButton = document.querySelector("#register_btn");
 
 const form = document.querySelector(".form");
-const registerBtn = document.querySelector("#register_btn");
-registerBtn.onclick = () => {
-    form.style.left = "0";
-}
+// const registerBtn = document.querySelector("#register_btn");
+// registerBtn.onclick = () => {
+//     form.style.left = "0";
+// }
 
 // const closeBtn = document.querySelector("#hideRegister");
 // closeBtn.onclick = () => {
