@@ -7,11 +7,7 @@ const NAME_HEIGHT_OFFSET = 450;
 const PP_WIDTH = 96;
 const PP_HEIGHT = 128;
 
-const certCanvas = document.querySelector("#canvas");
-certCanvas.width = CERT_WIDTH;
-certCanvas.height = CERT_HEIGHT;
-
-function drawCertificate(url, name, canvas = certCanvas) {
+function drawCertificate(url, name, canvas) {
     let c2D = canvas.getContext("2d");
     canvas.width = CERT_WIDTH;
     canvas.height = CERT_HEIGHT;
@@ -31,8 +27,4 @@ function drawName(name, context, font = "Alegreya") {
     context.textAlign = "center";
     context.font = FONT_SIZE + "px " + font;
     context.fillText(name, CERT_WIDTH / 2, NAME_HEIGHT_OFFSET);
-}
-
-window.onload = () => {
-    drawCertificate(IMG_CERTIFICATE, "");
 }

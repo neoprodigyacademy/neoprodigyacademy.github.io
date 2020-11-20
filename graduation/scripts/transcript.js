@@ -4,11 +4,6 @@ const TRANSCRIPT_SUFFIX = ".png";
 const TRANSCRIPT_WIDTH = 1000;
 const TRANSCRIPT_HEIGHT = 1425;
 
-const trCanvas = document.querySelector("#transcript-canvas");
-const trC2D = trCanvas.getContext("2d");
-trCanvas.width = TRANSCRIPT_WIDTH;
-trCanvas.height = TRANSCRIPT_HEIGHT;
-
 function generateScore(name) {
     var output = [];
     generateRawScore(name).forEach((i) => {
@@ -39,35 +34,39 @@ function sumGPA(name) {
     return gpa;
 }
 
-function drawTranscript(url, name) {
+function drawTranscript(url, name, canvas) {
+    let trC2D = canvas.getContext("2d");
+    canvas.width = TRANSCRIPT_WIDTH;
+    canvas.height = TRANSCRIPT_HEIGHT;
+
     const image = new Image();
     image.src = url;
     image.onload = () => {
-        trC2D.drawImage(image, 0, 0, trCanvas.width, trCanvas.height);
-        drawTranscriptName(name);
-        drawScore(generateScore(name));
+        trC2D.drawImage(image, 0, 0, canvas.width, canvas.height);
+        drawTranscriptName(name, trC2D);
+        drawScore(generateScore(name), trC2D);
     }
 }
 
-function drawTranscriptName(name) {
-    trC2D.textAlign = "left";
-    trC2D.font = "20px Alegreya";
-    trC2D.fillText(name.toUpperCase(), 193, 245);
-    trC2D.fillText(name.hashCode(), 193, 280);
+function drawTranscriptName(name, context) {
+    context.textAlign = "left";
+    context.font = "20px Alegreya";
+    context.fillText(name.toUpperCase(), 193, 245);
+    context.fillText(name.hashCode(), 193, 280);
 }
 
-function drawScore(scores) {
-    trC2D.textAlign = "center";
-    trC2D.font = "21px Alegreya";
+function drawScore(scores, context) {
+    context.textAlign = "center";
+    context.font = "21px Alegreya";
 
     for (i = 0; i < 9; i++) {
-        trC2D.fillText(scores[i], 400, 537 + (i * 35));
+        context.fillText(scores[i], 400, 537 + (i * 35));
     }
 }
 
-const downloadTranscript = document.querySelector("#transcript-download");
+// const downloadTranscript = document.querySelector("#transcript-download");
 
-downloadTranscript.onclick = () => {
-    var url = canvas.toDataURL("image/png");
-    downloadTranscript.href = url;
-}
+// downloadTranscript.onclick = () => {
+//     var url = canvas.toDataURL("image/png");
+//     downloadTranscript.href = url;
+// }
