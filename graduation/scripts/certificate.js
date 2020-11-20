@@ -7,36 +7,32 @@ const NAME_HEIGHT_OFFSET = 450;
 const PP_WIDTH = 96;
 const PP_HEIGHT = 128;
 
-const canvas = document.querySelector("#canvas");
-const c2D = canvas.getContext("2d");
-canvas.width = CERT_WIDTH;
-canvas.height = CERT_HEIGHT;
+const certCanvas = document.querySelector("#canvas");
+certCanvas.width = CERT_WIDTH;
+certCanvas.height = CERT_HEIGHT;
 
-function drawCertificate(url, name) {
+function drawCertificate(url, name, canvas = certCanvas) {
+    let c2D = canvas.getContext("2d");
+    canvas.width = CERT_WIDTH;
+    canvas.height = CERT_HEIGHT;
+
     const image = new Image();
     image.src = url;
     image.onload = () => {
         c2D.drawImage(image, 0, 0, canvas.width, canvas.height);
-        drawName(name, "Alegreya");
+        drawName(name, c2D, "Alegreya");
         if (profilePicture) {
             c2D.drawImage(profilePicture, 320, 1190, PP_WIDTH,PP_HEIGHT);
         }
     }
 }
 
-function drawName(name, font = "Helvetica") {
-    c2D.textAlign = "center";
-    c2D.font = FONT_SIZE + "px " + font;
-    c2D.fillText(name, CERT_WIDTH / 2, NAME_HEIGHT_OFFSET);
+function drawName(name, context, font = "Alegreya") {
+    context.textAlign = "center";
+    context.font = FONT_SIZE + "px " + font;
+    context.fillText(name, CERT_WIDTH / 2, NAME_HEIGHT_OFFSET);
 }
 
 window.onload = () => {
     drawCertificate(IMG_CERTIFICATE, "");
-}
-
-const downloadCertificate = document.querySelector("#certificate-download");
-
-downloadCertificate.onclick = () => {
-    var url = canvas.toDataURL("image/png");
-    downloadCertificate.href = url;
 }
