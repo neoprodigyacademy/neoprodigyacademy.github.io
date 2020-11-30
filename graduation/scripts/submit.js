@@ -29,7 +29,7 @@ function showCertificateOverlay() {
         overlay.classList.remove("hidden");
         overlay.innerHTML = '<a id="certificate-download" class="btn btn-primary download" download="certificate.png">Download</a><canvas id="canvas"></canvas>';
         let certCanvas = overlay.querySelector("#canvas");
-        drawCertificate(IMG_CERTIFICATE, student.name, certCanvas);
+        drawCertificate(IMG_CERTIFICATE + student.prodigy.toLowerCase() + ".png", student.name, certCanvas);
 
         let downloadCertificate = overlay.querySelector("#certificate-download");
         downloadCertificate.onclick = () => {

@@ -1,11 +1,11 @@
-const IMG_CERTIFICATE = "../assets/certificate.png";
+const IMG_CERTIFICATE = "../assets/certificate_";
 const CERT_WIDTH = 1000;
 const CERT_HEIGHT = 1425;
 const FONT_SIZE = 46;
-const NAME_HEIGHT_OFFSET = 450;
+const NAME_HEIGHT_OFFSET = 430;
 
-const PP_WIDTH = 96;
-const PP_HEIGHT = 128;
+const PP_WIDTH = 877 - 736;
+const PP_HEIGHT = 465 - 276;
 
 function drawCertificate(url, name, canvas) {
     let c2D = canvas.getContext("2d");
@@ -17,9 +17,6 @@ function drawCertificate(url, name, canvas) {
     image.onload = () => {
         c2D.drawImage(image, 0, 0, canvas.width, canvas.height);
         drawName(name, c2D, "Alegreya");
-        if (profilePicture) {
-            c2D.drawImage(profilePicture, 320, 1190, PP_WIDTH,PP_HEIGHT);
-        }
     }
 }
 
