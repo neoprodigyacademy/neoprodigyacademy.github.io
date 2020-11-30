@@ -47,3 +47,10 @@ const form = document.querySelector(".form");
 // closeBtn.onclick = () => {
 //     form.style.left = "-540px";
 // }
+
+overlay.addEventListener('click', (e) => {
+    if (e.target == overlay) {
+        overlay.classList.add("hidden");
+        overlay.innerHTML = '';
+    }
+})

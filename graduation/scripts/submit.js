@@ -9,10 +9,8 @@ var student = null;
 
 function submit() {
     student = new Student(name.value, prodigy.value);
-
-    if (screen.width < 768) {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-    }
+    document.querySelector(".welcome-layer").classList.add("hidden");
+    document.querySelector(".cards-layer").classList.remove("hidden");
 }
 
 submitName.onclick = submit;
