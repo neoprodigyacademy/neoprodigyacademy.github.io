@@ -73,6 +73,14 @@ body .container-fluid {
 
 .logo {
     margin-bottom: 48px;
+    width: 300px;
+}
+
+@media only screen and (max-width: 320px) {
+    .logo {
+        width: 240px;
+        margin-bottom: 16px;
+    }
 }
 
 .sidebar {
@@ -91,6 +99,13 @@ body .container-fluid {
     font-size: 20px;
     transform: 0.2s ease;
     padding: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+    .form {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
 }
 
 .cards-layer {
