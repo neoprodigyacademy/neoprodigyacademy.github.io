@@ -11,10 +11,6 @@
     font-size: 3.0rem !important;
 }
 
-#submit {
-    width: 100%;
-}
-
 #file-preview {
     width: 75%;
     max-width: 300px;
@@ -72,13 +68,13 @@ body .container-fluid {
 }
 
 .logo {
-    margin-bottom: 48px;
-    width: 300px;
+    margin-bottom: 32px;
+    width: 280px;
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 340px) {
     .logo {
-        width: 240px;
+        width: 180px;
         margin-bottom: 16px;
     }
 }
@@ -98,13 +94,24 @@ body .container-fluid {
 .form {
     font-size: 20px;
     transform: 0.2s ease;
-    padding: 16px;
+    padding: 16px 16px 0 16px;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 360px) {
     .form {
+        width: 330px;
         padding-left: 32px;
         padding-right: 32px;
+    }
+}
+
+#submit {
+    margin-top: 32px;
+}
+
+@media only screen and (min-width: 360px) {
+    #submit {
+        margin-top: 20px;
     }
 }
 
@@ -143,6 +150,14 @@ body .container-fluid {
     justify-content: flex-end;
     cursor: pointer;
     transition: 0.3s ease;
+}
+
+@media only screen and (max-width: 340px) {
+    .card-sm {
+        height: 55vh;
+        width: 200px;
+        min-width: 200px;
+    }
 }
 
 .card-sm:hover {
@@ -204,6 +219,7 @@ body .container-fluid {
     flex-direction: column;
     justify-content: flex-end;
 }
+
 .card-lg__container .card__text-lg {
     font-family: "Oswald", sans-serif;
     font-size: 120px;
@@ -211,6 +227,7 @@ body .container-fluid {
     letter-spacing: 2px;
     line-height: 125px;
 }
+
 .card-lg__container .card__text-md {
     color: #fff;
     font-family: sans-serif;
@@ -225,6 +242,30 @@ body .container-fluid {
 .card-lg__container .card__text-sm::before {
     width: 48px;
     height: 4px;
+}
+
+@media only screen and (max-width: 640px) {
+    .card-lg__container .card__text-lg {
+        font-size: 80px;
+        line-height: 85px;
+    }
+
+    .card-lg__container .card__text-sm {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .card-lg__container {
+        padding: 0 16px;
+    }
+    .card-lg__container .card__text-lg {
+        font-size: 60px;
+        line-height: 65px;
+    }
+    .card-lg__container .card__text-md {
+        font-size: 12px;
+    }
 }
 
 .overlay {
