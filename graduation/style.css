@@ -38,6 +38,9 @@
 
 .center-child {
     text-align: center;
+    background-color: rgba(172, 172, 172, 0.8);
+    padding-top: 16px;
+    border-radius: 16px;
 }
 
 html {
@@ -79,19 +82,6 @@ body .container-fluid {
     transform: 0.2s;
 }
 
-@media screen and (max-width: 768px) {
-    .sidebar {
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .sidebar {
-        background-color: rgba(255, 255, 255, 0.3);
-    }
-}
-
 .slide-out {
     position: absolute;
     left: -1000px;
@@ -100,11 +90,7 @@ body .container-fluid {
 .form {
     font-size: 20px;
     transform: 0.2s ease;
-    padding: 8px;
-}
-
-.form-visible {
-    transform: 0.2s ease
+    padding: 16px;
 }
 
 .cards-layer {

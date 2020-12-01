@@ -1,14 +1,5 @@
-class Student {
-    constructor(name, prodigy) {
-        this.name = name;
-        this.prodigy = prodigy;
-    }
-}
-
-var student = null;
-
 function submit() {
-    student = new Student(name.value, prodigy.value);
+    student = new Student(name.value, prodigy.value, regID.value);
     document.querySelector(".welcome-layer").classList.add("hidden");
     document.querySelector(".cards-layer").classList.remove("hidden");
 }
@@ -47,7 +38,8 @@ function showTranscriptOverlay() {
         overlay.classList.remove("hidden");
         overlay.innerHTML = '<a id="transcript-download" class="btn btn-primary download" download="transcript.png">Download</a><canvas id="canvas"></canvas>';
         let transcriptCanvas = overlay.querySelector("#canvas");
-        drawTranscript(TRANSCRIPT_PREFIX + student.prodigy.toLowerCase() + ".png", student.name, transcriptCanvas);
+        // drawTranscript(TRANSCRIPT_PREFIX + student.prodigy.toLowerCase() + ".png", student.name, student.id, transcriptCanvas);
+        drawStudentTranscript(transcriptCanvas, student);
 
         let download = overlay.querySelector("#transcript-download");
         download.onclick = () => {

@@ -14,20 +14,25 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row welcome-layer">
             <!-- LEFT SIDEBAR -->
-            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 sidebar" id="sidebar">
+            <div class="center-child">
+                <img src="../assets/NPAlogo.jpg" width="300" class="logo">
+
                 <form action="#" class="form">
                     <div class="form-group">
                         <input type="text" id="name" placeholder="Name" class="form-control" />
                     </div>
                     <div class="form-group">
                         <select class="form-control" id="prodigy">
+                            <option value="Sydenium">Sydenium</option>
                             <option value="Nordenium">Nordenium</option>
                             <option value="Ostenium">Ostenium</option>
-                            <option value="Sydenium">Sydenium</option>
                             <option value="Vestenium">Vestenium</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="regID" placeholder="Registration Number (e.g. 0001)" class="form-control" />
                     </div>
                     <div class="form-group">
                         <input type="file" class="form-control-file" id="upload" aria-describedby="upload-file"
@@ -37,22 +42,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" id="submit" class="btn btn-primary">SUBMIT</button>
                     </div>
                 </form>
-
-                <!-- <section class="card-lg__container hidden">
-                    <p class="card__text-sm">We are your vision</p>
-                    <h1 class="card__text-lg">NEO Prodigy Academy</h1>
-                    <p class="card__text-md">National network of prodigy studies scholars since 1997.</p>
-                    <a href="#" class="card__btn" id="register_btn">Register</a>
-                </section> -->
-
             </div>
+        </div>
 
-            <!-- RIGHT CONTENT, REFLOW TO BOTTOM IF NECESSARY -->
-            <div id="kit" class="col-lg-9 col-md-8 col-sm-12 col-xs-12 card-sm__container">
-                
+        <div class="row hidden cards-layer">
+            <div id="kit" class="col-lg-12 col-sm-12 card-sm__container">
+                <section class="card-lg__container">
+                    <div class="card__text-sm">We are your vision</div>
+                    <h1 class="card__text-lg">NEO Prodigy Academy</h1>
+                    <div class="card__text-md">National network of prodigy studies scholars since 1997.</div>
+                  </section>
+
                 <section id="show-letter" class="card-sm"
                     style="background-image: url('https://i.pinimg.com/564x/f8/9d/04/f89d04a0f27aff636a53112d7eb247c4.jpg')">
                     <p class="card__text-sm">01</p>
@@ -76,45 +79,6 @@
                     <p class="card__text-sm">04</p>
                     <h1 class="card__text-lg">Graduation Kit</h1>
                 </section>
-
-                <!-- <div style="display: none;">
-                    <ul class="nav nav-tabs" id="tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="certificate-tab" data-toggle="tab" href="#certificate"
-                                role="tab" aria-controls="certificate" aria-selected="true">Graduation Certificate</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="transcript-tab" data-toggle="tab" href="#transcript" role="tab"
-                                aria-controls="transcript" aria-selected="false">Transcript</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="gown-tab" data-toggle="tab" href="#gown" role="tab"
-                                aria-controls="gown" aria-selected="false">Gown</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content row" id="tab-content">
-                        <div class="tab-pane fade show active" id="certificate" role="tabpanel"
-                            aria-labelledby="certificate-tab">
-                            <div class="row col col-xl-12">
-                                <a id="certificate-download" class="btn btn-primary download col-md-2"
-                                    download="certificate.png">Download</a>
-                                <canvas id="canvas"></canvas>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="transcript" role="tabpanel" aria-labelledby="transcript-tab">
-                            <div class="row col col-xl-12">
-                                <a id="transcript-download" class="btn btn-primary download col-md-2"
-                                    download="transcript.png">Download</a>
-                                <canvas id="transcript-canvas" class="col col-xl"></canvas>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="gown" role="tabpanel" aria-labelledby="gown-tab">
-                            <img id="gown-image" class="col-xl-12" />
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -126,6 +90,7 @@
     </div>
     
     <script src="scripts/script.js"></script>
+    <script src="scripts/student.js"></script>
     <script src="scripts/certificate.js"></script>
     <script src="scripts/transcript.js"></script>
     <script src="scripts/gown.js"></script>
