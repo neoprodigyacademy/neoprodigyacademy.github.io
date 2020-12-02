@@ -72,10 +72,24 @@ body .container-fluid {
     width: 280px;
 }
 
+.form {
+    font-size: 14px;
+    transform: 0.2s ease;
+    padding: 16px 16px;
+}
+
+#submit {
+    margin-top: 32px;
+}
+
 @media only screen and (max-width: 340px) {
     .logo {
-        width: 180px;
-        margin-bottom: 16px;
+        width: 120px;
+        margin-bottom: 0;
+    }
+
+    #submit {
+        margin-top: 8px;
     }
 }
 
@@ -91,27 +105,12 @@ body .container-fluid {
     left: -1000px;
 }
 
-.form {
-    font-size: 20px;
-    transform: 0.2s ease;
-    padding: 16px 16px 0 16px;
-}
-
 @media only screen and (min-width: 360px) {
     .form {
+        font-size: 20px;
         width: 330px;
         padding-left: 32px;
         padding-right: 32px;
-    }
-}
-
-#submit {
-    margin-top: 32px;
-}
-
-@media only screen and (min-width: 360px) {
-    #submit {
-        margin-top: 20px;
     }
 }
 
@@ -253,6 +252,9 @@ body .container-fluid {
     .card-lg__container .card__text-sm {
         font-size: 22px;
     }
+    .card__text-sm {
+        padding: 8px 0 16px;
+    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -262,6 +264,7 @@ body .container-fluid {
     .card-lg__container .card__text-lg {
         font-size: 60px;
         line-height: 65px;
+        letter-spacing: 1px;
     }
     .card-lg__container .card__text-md {
         font-size: 12px;
