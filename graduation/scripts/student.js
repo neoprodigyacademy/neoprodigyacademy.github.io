@@ -64,3 +64,5 @@ class Student {
 }
 
 var student = null;
+
+[["A","AB","AB","AB","AB","AB","B"], ["AB","AB","AB","AB","AB","AB","AB"],["A","A","A","AB","AB","B","B"],["A","A","A","A","B","B","B"],["A","A","AB","AB","AB","AB","B"],["A","AB","AB","AB","AB","AB","AB"],["A","A","A","A","AB","B","B"],["A","A","AB","AB","AB","AB","AB"],["A","A","A","AB","AB","AB","B"],["A","A","A","A","A","B","B"],["A","A","A","AB","AB","AB","AB"],["A","A","A","A","AB","AB","B"], ["A","A","A","A","AB","AB","AB"],["A","A","A","A","A","AB","B"]] 
