@@ -13,21 +13,36 @@ class Student {
     }
 
     rawScores() {
-        let radix = 3; // A, B, C
+        let radix = 3; // A, AB, B
         let subjectCount = 7
-        let letterScore = this.name.hashCode()
+        let output = this.name.hashCode()
             .toString(radix)
             .substring(1, 1 + subjectCount)
             .split('');
-        return letterScore;
+        output.forEach((e, i) => {
+            output[i] = 4 - (0.5 * e);
+        })
+        return output;
     }
 
     marks() {
-        let marks = this.rawScores();
-        marks.forEach((e, index) => {
-            marks[index] = String.fromCharCode(parseInt(e) + 'A'.charCodeAt());
+        // let marks = this.rawScores();
+        // marks.forEach((e, index) => {
+        //     marks[index] = String.fromCharCode(parseInt(e) + 'A'.charCodeAt());
+        // });
+
+        let map = {
+            4   : "A",
+            3.5 : "AB",
+            3   : "B"
+        }
+
+        let output = [];
+        this.rawScores().forEach((e, i) => {
+            output[i] = map[e];
         });
-        return marks;
+
+        return output;
     }
 
     credits() {
@@ -44,7 +59,7 @@ class Student {
         let grades = [];
         this.marks().forEach((mark, index) => {
             grades.push({
-                "score": 4 - this.rawScores()[index],
+                "score": this.rawScores()[index],
                 "mark": mark,
                 "credits": this.credits()[index]
             });
@@ -55,7 +70,7 @@ class Student {
     getGPA() {
         var cumulativeGrades = 0.0;
         this.rawScores().forEach((e, i) => {
-            cumulativeGrades += (4 - e) * this.credits()[i];
+            cumulativeGrades += e * this.credits()[i];
         })
 
         let gpa = cumulativeGrades / this.getTotalCredits();
