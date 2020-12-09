@@ -3,7 +3,7 @@ class Student {
         this.name = name;
         this.prodigy = prodigy;
         this.id = "20 - 0514 - " + this.prodigium[prodigy] + " - " + id;
-        this.hash = name.hashCode() % 14;
+        this.hash = name.hashCode() % gradeMap.length;
     }
 
     prodigium = {
@@ -13,22 +13,22 @@ class Student {
         "Vestenium" : "04"
     }
 
-    gradeMap = [
-        ["A","AB","AB","AB","AB","B","AB"],
-        ["AB","AB","AB","AB","AB","AB","AB"],
-        ["A","A","A","AB","AB","B","B"],
-        ["A","A","A","A","B","B","B"],
-        ["A","A","AB","AB","AB","B","AB"],
-        ["A","AB","AB","AB","AB","AB","AB"],
-        ["A","A","A","A","AB","B","B"],
-        ["A","A","AB","AB","AB","AB","AB"],
-        ["A","A","A","AB","AB","B","AB"],
-        ["A","A","A","A","A","B","B"],
-        ["A","A","A","AB","AB","AB","AB"],
-        ["A","A","A","A","AB","B","AB"],
-        ["A","A","A","A","AB","AB","AB"],
-        ["A","A","A","A","A","B","AB"]
-    ];
+    // gradeMap = [
+    //     ["A","AB","AB","AB","AB","B","AB"],
+    //     ["AB","AB","AB","AB","AB","AB","AB"],
+    //     ["A","A","A","AB","AB","B","B"],
+    //     ["A","A","A","A","B","B","B"],
+    //     ["A","A","AB","AB","AB","B","AB"],
+    //     ["A","AB","AB","AB","AB","AB","AB"],
+    //     ["A","A","A","A","AB","B","B"],
+    //     ["A","A","AB","AB","AB","AB","AB"],
+    //     ["A","A","A","AB","AB","B","AB"],
+    //     ["A","A","A","A","A","B","B"],
+    //     ["A","A","A","AB","AB","AB","AB"],
+    //     ["A","A","A","A","AB","B","AB"],
+    //     ["A","A","A","A","AB","AB","AB"],
+    //     ["A","A","A","A","A","B","AB"]
+    // ];
 
     map = {
         "A"  : 4,
@@ -37,11 +37,11 @@ class Student {
     }
 
     marks() {
-        return this.gradeMap[this.hash];
+        return gradeMap[this.hash];
     }
 
     credits() {
-        return [7, 7, 7, 7, 7, 7, 8];
+        return [6, 6, 7, 7, 7, 8, 9];
     }
 
     getTotalCredits() {
