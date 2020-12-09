@@ -9,7 +9,9 @@ function drawStudentTranscript(canvas, student) {
     canvas.width = TRANSCRIPT_WIDTH;
     canvas.height = TRANSCRIPT_HEIGHT;
 
-    let font = "Serif";
+    let fontStyle = "bold ";
+    let fontSize = " 22px ";
+    let fontFamily = " Times New Roman";
 
     const image = new Image();
     image.src = TRANSCRIPT_PREFIX + student.prodigy.toLowerCase() + ".png";
@@ -22,10 +24,11 @@ function drawStudentTranscript(canvas, student) {
 
         // Name
         context.textAlign = "left";
-        context.font = "20px " + font;
+        context.font = fontStyle + fontSize + fontFamily;
         context.fillText(student.name.toUpperCase(), 315, 322);
 
         // ID
+        context.font = fontSize + fontFamily;
         context.fillText(student.id, 315, 352);
 
         // Date
@@ -33,7 +36,7 @@ function drawStudentTranscript(canvas, student) {
         
         // Scores
         context.textAlign = "center";
-        context.font = "21px " +  font;
+        context.font = fontSize + fontFamily;
         student.grades().forEach((grades, i) => {
             context.fillText(grades.credits, 614, 593 + (i * 35));
             context.fillText(grades.mark, 850, 593 + (i * 35));
