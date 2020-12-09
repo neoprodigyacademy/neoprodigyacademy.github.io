@@ -43,6 +43,7 @@ function drawStudentTranscript(canvas, student) {
             context.fillText(grades.score, 741, 593 + (i * 35));
         });
 
+        context.font = fontStyle + fontSize + fontFamily;
         context.fillText(student.getGPA(), 336, 885);
         context.fillText(student.getTotalCredits(), 336, 915);
     }
