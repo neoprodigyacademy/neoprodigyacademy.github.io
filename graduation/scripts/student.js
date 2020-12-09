@@ -3,6 +3,7 @@ class Student {
         this.name = name;
         this.prodigy = prodigy;
         this.id = "20 - 0514 - " + this.prodigium[prodigy] + " - " + id;
+        this.hash = name.hashCode() % 14;
     }
 
     prodigium = {
@@ -12,22 +13,31 @@ class Student {
         "Vestenium" : "04"
     }
 
-    rawScores() {
-        let radix = 3; // A, B, C
-        let subjectCount = 7
-        let letterScore = this.name.hashCode()
-            .toString(radix)
-            .substring(1, 1 + subjectCount)
-            .split('');
-        return letterScore;
+    gradeMap = [
+        ["A","AB","AB","AB","AB","B","AB"],
+        ["AB","AB","AB","AB","AB","AB","AB"],
+        ["A","A","A","AB","AB","B","B"],
+        ["A","A","A","A","B","B","B"],
+        ["A","A","AB","AB","AB","B","AB"],
+        ["A","AB","AB","AB","AB","AB","AB"],
+        ["A","A","A","A","AB","B","B"],
+        ["A","A","AB","AB","AB","AB","AB"],
+        ["A","A","A","AB","AB","B","AB"],
+        ["A","A","A","A","A","B","B"],
+        ["A","A","A","AB","AB","AB","AB"],
+        ["A","A","A","A","AB","B","AB"],
+        ["A","A","A","A","AB","AB","AB"],
+        ["A","A","A","A","A","B","AB"]
+    ];
+
+    map = {
+        "A"  : 4,
+        "AB" : 3.5,
+        "B"  : 3 
     }
 
     marks() {
-        let marks = this.rawScores();
-        marks.forEach((e, index) => {
-            marks[index] = String.fromCharCode(parseInt(e) + 'A'.charCodeAt());
-        });
-        return marks;
+        return this.gradeMap[this.hash];
     }
 
     credits() {
@@ -35,7 +45,7 @@ class Student {
     }
 
     getTotalCredits() {
-        var creditsTaken = 0;
+        var creditsTaken = 0;   
         this.credits().forEach(e => { creditsTaken += e; });
         return creditsTaken;
     }
@@ -44,7 +54,7 @@ class Student {
         let grades = [];
         this.marks().forEach((mark, index) => {
             grades.push({
-                "score": 4 - this.rawScores()[index],
+                "score": this.map[mark],
                 "mark": mark,
                 "credits": this.credits()[index]
             });
@@ -54,8 +64,8 @@ class Student {
 
     getGPA() {
         var cumulativeGrades = 0.0;
-        this.rawScores().forEach((e, i) => {
-            cumulativeGrades += (4 - e) * this.credits()[i];
+        this.marks().forEach((e, i) => {
+            cumulativeGrades += this.map[e] * this.credits()[i];
         })
 
         let gpa = cumulativeGrades / this.getTotalCredits();
@@ -64,5 +74,3 @@ class Student {
 }
 
 var student = null;
-
-[["A","AB","AB","AB","AB","B","AB"], ["AB","AB","AB","AB","AB","AB","AB"],["A","A","A","AB","AB","B","B"],["A","A","A","A","B","B","B"],["A","A","AB","AB","AB","B","AB"],["A","AB","AB","AB","AB","AB","AB"],["A","A","A","A","AB","B","B"],["A","A","AB","AB","AB","AB","AB"],["A","A","A","AB","AB","B","AB"],["A","A","A","A","A","B","B"],["A","A","A","AB","AB","AB","AB"],["A","A","A","A","AB","B","AB"], ["A","A","A","A","AB","AB","AB"],["A","A","A","A","A","B","AB"]] 
