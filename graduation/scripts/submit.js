@@ -1,9 +1,9 @@
 function submit() {
     student = new Student(name.value, prodigy.value, regID.value);
     document.querySelector(".welcome-layer").classList.add("hidden");
-    // document.querySelector(".cards-layer").classList.remove("hidden");
+    document.querySelector(".cards-layer").classList.remove("hidden");
 
-    showInvitationOverlay(false);
+    //showInvitationOverlay(false);
 }
 
 submitName.onclick = submit;
