@@ -1,7 +1,9 @@
 function submit() {
     student = new Student(name.value, prodigy.value, regID.value);
     document.querySelector(".welcome-layer").classList.add("hidden");
-    document.querySelector(".cards-layer").classList.remove("hidden");
+    // document.querySelector(".cards-layer").classList.remove("hidden");
+
+    showInvitationOverlay(false);
 }
 
 submitName.onclick = submit;
@@ -38,7 +40,6 @@ function showTranscriptOverlay() {
         overlay.classList.remove("hidden");
         overlay.innerHTML = '<a id="transcript-download" class="btn btn-primary download" download="transcript.png">Download</a><canvas id="canvas"></canvas>';
         let transcriptCanvas = overlay.querySelector("#canvas");
-        // drawTranscript(TRANSCRIPT_PREFIX + student.prodigy.toLowerCase() + ".png", student.name, student.id, transcriptCanvas);
         drawStudentTranscript(transcriptCanvas, student);
 
         let download = overlay.querySelector("#transcript-download");
@@ -54,11 +55,21 @@ showGownButton.onclick = showGown;
 
 function showGown() {
     if (student) {
+        let assetURL = "../assets/gown_" + student.prodigy.toLowerCase() + ".jpg";
         overlay.classList.remove("hidden");
-        overlay.innerHTML = '<a id="transcript-download" class="btn btn-primary download" download="transcript.png">Download</a><img id="gown-image"></canvas>';
+        overlay.innerHTML =
+            '<a id="gown-download" class="btn btn-primary download" download href="' + assetURL + '">Download</a>' +
+            '<img id="gown-image"></canvas>';
         let gownImage = overlay.querySelector("#gown-image");
-        gownImage.src = "../assets/gown_" + student.prodigy.toLowerCase() + ".jpg";
+        gownImage.src = assetURL;
     } else showError();
+}
+
+function showInvitationOverlay(closeable) {
+    overlay.classList.remove("hidden");
+    overlay.classList.add("full-width");
+    overlay.innerHTML = '<a id="invitation-download" class="btn btn-primary download" download="invitation.jpg" href="../assets/invitation.jpg">Download</a><img src="../assets/invitation.jpg">';
+    if (!closeable) overlay.removeEventListener('click', closeOverlay);
 }
 
 function showError() {

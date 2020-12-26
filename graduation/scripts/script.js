@@ -39,19 +39,12 @@ String.prototype.hashCode = function() {
 const registerButton = document.querySelector("#register_btn");
 
 const form = document.querySelector(".form");
-// const registerBtn = document.querySelector("#register_btn");
-// registerBtn.onclick = () => {
-//     form.style.left = "0";
-// }
 
-// const closeBtn = document.querySelector("#hideRegister");
-// closeBtn.onclick = () => {
-//     form.style.left = "-540px";
-// }
-
-overlay.addEventListener('click', (e) => {
+function closeOverlay(e) {
     if (e.target == overlay) {
         overlay.classList.add("hidden");
         overlay.innerHTML = '';
     }
-})
+}
+
+overlay.addEventListener('click', closeOverlay)
