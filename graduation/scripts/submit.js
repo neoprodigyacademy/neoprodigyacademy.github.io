@@ -13,7 +13,9 @@ name.addEventListener("keyup", function (event) {
 });
 
 const showCertButton = document.querySelector("#show-certificate");
-showCertButton.onclick = showCertificateOverlay;
+const showTranscriptButton = document.querySelector("#show-transcript");
+const showGownButton = document.querySelector("#show-gown");
+const showInvitationButton = document.querySelector("#show-letter");
 
 function showCertificateOverlay() {
     if (student) {
@@ -21,7 +23,7 @@ function showCertificateOverlay() {
         overlay.innerHTML = '<a id="certificate-download" class="btn btn-primary download" download="certificate.png">Download</a><canvas id="canvas"></canvas>';
         let certCanvas = overlay.querySelector("#canvas");
         drawCertificate(IMG_CERTIFICATE + student.prodigy.toLowerCase() + ".png", student.name, certCanvas);
-
+        
         let downloadCertificate = overlay.querySelector("#certificate-download");
         downloadCertificate.onclick = () => {
             var url = certCanvas.toDataURL("image/png");
@@ -30,16 +32,13 @@ function showCertificateOverlay() {
     } else showError();
 }
 
-const showTranscriptButton = document.querySelector("#show-transcript");
-showTranscriptButton.onclick = showTranscriptOverlay;
-
 function showTranscriptOverlay() {
     if (student) {
         overlay.classList.remove("hidden");
         overlay.innerHTML = '<a id="transcript-download" class="btn btn-primary download" download="transcript.png">Download</a><canvas id="canvas"></canvas>';
         let transcriptCanvas = overlay.querySelector("#canvas");
         drawStudentTranscript(transcriptCanvas, student);
-
+        
         let download = overlay.querySelector("#transcript-download");
         download.onclick = () => {
             var url = transcriptCanvas.toDataURL("image/png");
@@ -47,9 +46,6 @@ function showTranscriptOverlay() {
         }
     } else showError();
 }
-
-const showGownButton = document.querySelector("#show-gown");
-showGownButton.onclick = showGown;
 
 function showGown() {
     if (student) {
@@ -67,25 +63,27 @@ function showGown() {
 function showInvitationOverlay() {
     overlay.classList.remove("hidden");
     overlay.classList.add("full-width");
-
+    
     let invitationHTML =
         '<a id="invitation-download" class="btn btn-primary download" download="invitation.jpg" href="../assets/invitation.jpg">Download</a>' +
         '<img src="../assets/invitation.jpg">';
     let guidebookHTML =
         '<a id="guidebook-[idx]-download" class="btn btn-primary download" download="guidebook[idx].jpg" href="../assets/GUIDEBOOK[idx].jpg">Download</a>' +
         '<img src="../assets/GUIDEBOOK[idx].jpg">';
-
+    
     var concatenated = invitationHTML;
     for (i = 0; i < 3; i++) {
         concatenated += guidebookHTML.replaceAll("[idx]", i + 1);
     }
-
+    
     overlay.innerHTML = concatenated;
 }
-
-const showInvitationButton = document.querySelector("#show-letter");
-showInvitationButton.onclick = showInvitationOverlay;
 
 function showError() {
     alert("Please register first");
 }
+
+showInvitationButton.onclick = showInvitationOverlay;
+// showCertButton.onclick = showCertificateOverlay;
+// showTranscriptButton.onclick = showTranscriptOverlay;
+// showGownButton.onclick = showGown;
