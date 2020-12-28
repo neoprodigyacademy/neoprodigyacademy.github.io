@@ -53,13 +53,14 @@ showGownButton.onclick = showGown;
 
 function showGown() {
     if (student) {
-        let assetURL = "../assets/gown_" + student.prodigy.toLowerCase() + ".jpg";
+        let capURL = "../assets/" + student.prodigy.toLowerCase() + "_cap.png";
+        let robeURL = "../assets/" + student.prodigy.toLowerCase() + "_robe.png";
         overlay.classList.remove("hidden");
         overlay.innerHTML =
-            '<a id="gown-download" class="btn btn-primary download" download href="' + assetURL + '">Download</a>' +
-            '<img id="gown-image">';
-        let gownImage = overlay.querySelector("#gown-image");
-        gownImage.src = assetURL;
+            '<a id="cap-download" class="btn btn-primary download" download href="' + capURL + '">Download</a>' +
+            '<img id="cap-image" src="' + capURL + '">' +
+            '<a id="robe-download" class="btn btn-primary download" download href="' + robeURL + '">Download</a>' +
+            '<img id="robe-image" src="' + robeURL + '">';
     } else showError();
 }
 

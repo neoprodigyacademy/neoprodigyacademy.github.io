@@ -281,6 +281,7 @@ body .container-fluid {
     overflow-y: scroll;
     text-align: center;
     background-color: rgba(20, 20, 20, 0.8);
+    padding-bottom: 16px;
 }
 
 /* .overlay img {
