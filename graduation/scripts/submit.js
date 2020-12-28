@@ -1,9 +1,7 @@
 function submit() {
     student = new Student(name.value, prodigy.value, regID.value);
     document.querySelector(".welcome-layer").classList.add("hidden");
-    //document.querySelector(".cards-layer").classList.remove("hidden");
-
-    showInvitationOverlay(false);
+    document.querySelector(".cards-layer").classList.remove("hidden");
 }
 
 submitName.onclick = submit;
@@ -59,18 +57,33 @@ function showGown() {
         overlay.classList.remove("hidden");
         overlay.innerHTML =
             '<a id="gown-download" class="btn btn-primary download" download href="' + assetURL + '">Download</a>' +
-            '<img id="gown-image"></canvas>';
+            '<img id="gown-image">';
         let gownImage = overlay.querySelector("#gown-image");
         gownImage.src = assetURL;
     } else showError();
 }
 
-function showInvitationOverlay(closeable) {
+function showInvitationOverlay() {
     overlay.classList.remove("hidden");
     overlay.classList.add("full-width");
-    overlay.innerHTML = '<a id="invitation-download" class="btn btn-primary download" download="invitation.jpg" href="../assets/invitation.jpg">Download</a><img src="../assets/invitation.jpg">';
-    if (!closeable) overlay.removeEventListener('click', closeOverlay);
+
+    let invitationHTML =
+        '<a id="invitation-download" class="btn btn-primary download" download="invitation.jpg" href="../assets/invitation.jpg">Download</a>' +
+        '<img src="../assets/invitation.jpg">';
+    let guidebookHTML =
+        '<a id="guidebook-[idx]-download" class="btn btn-primary download" download="guidebook[idx].jpg" href="../assets/GUIDEBOOK[idx].jpg">Download</a>' +
+        '<img src="../assets/GUIDEBOOK[idx].jpg">';
+
+    var concatenated = invitationHTML;
+    for (i = 0; i < 3; i++) {
+        concatenated += guidebookHTML.replaceAll("[idx]", i + 1);
+    }
+
+    overlay.innerHTML = concatenated;
 }
+
+const showInvitationButton = document.querySelector("#show-letter");
+showInvitationButton.onclick = showInvitationOverlay;
 
 function showError() {
     alert("Please register first");

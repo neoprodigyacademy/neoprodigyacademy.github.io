@@ -47,4 +47,4 @@ function closeOverlay(e) {
     }
 }
 
-overlay.addEventListener('click', closeOverlay)
+overlay.addEventListener('click', closeOverlay);
