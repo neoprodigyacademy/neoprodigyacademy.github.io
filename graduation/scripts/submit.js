@@ -69,7 +69,7 @@ function showInvitationOverlay() {
     overlay.classList.add("full-width");
 
     let invitationHTML =
-        '<a id="invitation-download" class="btn btn-primary download" download="invitation.jpg" href="../assets/invitation.jpg">Download</a>' +
+        '<a id="invitation-download" class="btn btn-primary download" download="invitation_main.jpg" href="../assets/invitation_main.jpg">Download</a>' +
         '<img src="../assets/invitation_main.jpg">';
     let guidebookHTML =
         '<a id="guidebook-[idx]-download" class="btn btn-primary download" download="guidebook[idx].jpg" href="../assets/GUIDEBOOK[idx].jpg">Download</a>' +
