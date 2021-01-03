@@ -55,7 +55,7 @@ function showGown() {
         overlay.classList.remove("hidden");
         overlay.innerHTML =
             '<a id="plakat-download" class="btn btn-primary download" download href="' + plakatURL + '">Download</a>' +
-            '<img id="plakat-image" src="' + plakatURL + '">';
+            '<img id="plakat-image" src="' + plakatURL + '">' +
             '<a id="cap-download" class="btn btn-primary download" download href="' + capURL + '">Download</a>' +
             '<img id="cap-image" src="' + capURL + '">' +
             '<a id="robe-download" class="btn btn-primary download" download href="' + robeURL + '">Download</a>' +
