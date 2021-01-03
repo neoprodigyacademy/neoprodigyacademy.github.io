@@ -49,10 +49,13 @@ function showTranscriptOverlay() {
 
 function showGown() {
     if (student) {
+        let plakatURL = "../assets/" + student.prodigy.toLowerCase() + "_plakat.png";
         let capURL = "../assets/" + student.prodigy.toLowerCase() + "_cap.png";
         let robeURL = "../assets/" + student.prodigy.toLowerCase() + "_robe.png";
         overlay.classList.remove("hidden");
         overlay.innerHTML =
+            '<a id="plakat-download" class="btn btn-primary download" download href="' + plakatURL + '">Download</a>' +
+            '<img id="plakat-image" src="' + plakatURL + '">';
             '<a id="cap-download" class="btn btn-primary download" download href="' + capURL + '">Download</a>' +
             '<img id="cap-image" src="' + capURL + '">' +
             '<a id="robe-download" class="btn btn-primary download" download href="' + robeURL + '">Download</a>' +
@@ -87,6 +90,6 @@ function showError() {
 }
 
 showInvitationButton.onclick = showInvitationOverlay;
-// showCertButton.onclick = showCertificateOverlay;
-// showTranscriptButton.onclick = showTranscriptOverlay;
-// showGownButton.onclick = showGown;
+showCertButton.onclick = showCertificateOverlay;
+showTranscriptButton.onclick = showTranscriptOverlay;
+showGownButton.onclick = showGown;
